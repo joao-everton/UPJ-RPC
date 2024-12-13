@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Relatório</title>
+    <link rel="stylesheet" href="public/css/ficha.css">
+    <link rel="stylesheet" href="public/css/buttonswitch.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+
+
+<!-- Content -->
+<body>
+
+<nav id="slide-menu">
+	<ul>
+		<li>Home</li>
+		<li>Dashboard</li>
+		<li>Profile</li>
+		<li>Settings</li>
+		<li>Logout</li>
+	</ul>
+</nav>
+<div id="content">    
+    <header style="text-align: center;">
+        <div class="menu-trigger"></div>
+        <h1>RELATÓRIO DE SAÍDA E ENTRADA DE EQUIPAMENTOS</h1>   
+    </header>
+    <nav id="info_gerais">
+        <div class="UPJ_box" style="background-color: hwb(224 9% 13%);">
+            <h2>UPJ</h2>
+            <label class="theme-switch">
+                <input type="checkbox" class="checkbox">
+                <div class="container">
+                  <div class="circle-container">
+                    <div class="sun-moon-container">
+                      <div class="moon">
+                        <div class="spot"></div>
+                        <div class="spot"></div>
+                        <div class="spot"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </label>
+        </div>
+        <div class="viagem" style="background-color: #184dddcc;">
+            <h2>VIAGEM</h2>
+            <input type="checkbox" class="viagem_check_sim">
+            <input type="checkbox" class="viagem_check_nao">
+        </div>
+        <div class="equipe">
+            <h2>EQUIPE</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>REPÓRTER</th>
+                        <th>REP. CINEMAT</th>
+                        <th>AUXILIAR</th>
+                    </tr>
+                    <tr>
+                        <th><input type="text" class="reporter"></th>
+                        <th><input type="text" class="rep_cine"></th>
+                        <th><input type="text" class="auxiliar"></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div class="mochilink" style="display: flex; text-align: center; justify-content:center; align-items: center;">
+            <h2></h2>
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                <label class="form-check-label" for="flexSwitchCheckDefault" id="switchLabel">Manhã</label>
+              </div>
+        </div>
+        <div class="carro">
+            <h2>CARRO</h2>
+        </div>
+    </nav>
+    <section>
+
+    </section>
+    <footer id="saidas_entradas"> <!--Footer com entradas e saídas-->
+        <div class="saidas"> <!--Saídas 1 e 2-->
+            <div class="saida1">
+                <div class="box_saida1">
+                    <h1>SAÍDA 1</h1>
+                </div>
+                <div class="info_saidas1">    
+                    <div class="data_saida1">
+                        <h3>Data</h3>
+                        <input type="date">
+                    </div>
+                    <div class="hora_saida1">
+                        <h3>Hora</h3>
+                        <input type="time">
+                    </div>
+                </div>
+            </div>
+            <div class="saida2">
+                <div class="box_saida2">
+                    <h1>SAÍDA 2</h1>
+                </div>
+                <div class="info_saidas2">
+                    <div class="data_saida2">
+                        <h3>Data</h3>
+                        <input type="date">
+                    </div>
+                    <div class="hora_saida2">
+                        <h3>Hora</h3>
+                        <input type="time">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="entradas">
+            <div class="entrada1">
+                <div class="box_entrada1">
+                    <h1>ENTRADA 1</h1>
+                </div>
+                <div class="data_saida1">
+                    <h3>Data</h3>
+                    <input type="date">
+                </div>
+                <div class="hora_saida1">
+                    <h3>Hora</h3>
+                    <input type="time">
+                </div>
+            </div>
+            <div class="entrada2">
+                <div class="box_entrada2">
+                    <h1>SAÍDA 2</h1>
+                </div>
+                <div class="data_entrada2">
+                    <h3>Data</h3>
+                    <input type="date">
+                </div>
+                <div class="hora_entrada2">
+                    <h3>Hora</h3>
+                    <input type="time">
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+</body>
+
+
+<script src="public/js/ficha.js"></script>

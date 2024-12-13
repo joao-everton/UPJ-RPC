@@ -1,0 +1,320 @@
+
+*{
+    font-family: "Rubik", sans-serif
+}
+body {
+    background-color:rgba(24, 49, 97, 0.952);
+    background-repeat: no-repeat; /* Impede que a imagem se repita */
+    background-position: center; /* Centraliza a imagem */
+    ;
+}
+
+
+/*************************Começo cabeçalho******************************/
+header{
+    overflow: hidden;
+    display: flex;
+    background: linear-gradient(to top right, #004986 , #236399 ); 
+    max-height: 90px;
+    height: 100%;
+    padding: 0;
+    float: top;
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    text-align: center;
+}
+
+.title{
+    flex: 1.8;
+    max-height: 100px;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    padding: 0px;
+   
+}
+
+.title h1 {
+    margin-top: 15px;
+    margin-bottom: 0px;
+    padding: 0px;
+    color: white;
+    
+    
+}
+
+.title h2 {
+    margin-left: 150px;
+    padding: 0px;
+    margin-top: 0px;
+    margin-bottom: 50px;
+    color: white;
+}
+
+.img_header{
+    flex: 0.2;
+    width: 100%;
+    
+}
+
+.logo{
+ width: 90px;
+ border-radius:15%;
+ 
+}
+
+
+.form-inline {
+    display: flex;
+    align-items: center;
+}
+.form-inline label {
+    margin-right: 10px;
+}
+.form-inline button {
+    margin-left: 5px;
+}
+
+#reportDate{
+    padding: 0px;
+    color: aliceblue;
+    border-radius: 10px;
+    background-color: transparent;
+    font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 50px;
+    margin: auto;
+    font-family: "Rubik", sans-serif;
+    
+    }
+
+
+/*************************Fim cabeçalho******************************/
+
+main{
+    text-align: center;
+}
+
+.bloco_manha{
+    text-align: center;
+    border: 15px;
+    padding: 5px 0px 5px 0px;
+
+}
+
+
+/*************************Começo Tabela******************************/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: transparent;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    
+   
+}
+
+th, td {
+    padding: 0px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.247);
+    
+    
+    
+}
+th {
+    background-color: #236399;
+    color: rgb(255, 255, 255);
+    border: 1px solid black;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    text-align: center;
+}
+
+td {
+    background-color: #f9f9f9;
+    padding: 0px;
+   
+    height: 1px;
+
+}
+
+input[type="time"], input[type="text"], select {
+    width: 100%;
+    padding: 5px;
+    margin: 4px ;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    height: 30px;
+}
+
+input[type="time"]:focus, input[type="text"]:focus, select:focus {
+    border-color: #1d1492;
+    outline: none;
+    box-shadow: 0 0 5px rgba(39, 26, 163, 0.5);
+}
+
+#add_line_manha {
+    background-color:#236399;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s;
+    margin-top: 2px;
+    margin-right: 20px;
+    width: 50px;
+    float: right;
+}
+
+#add_line:hover {
+    background-color: #45a049;
+}
+
+#add_line_tarde {
+    background-color:#236399;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s;
+    margin-top: 2px;
+    margin-right: 20px;
+    width: 50px;
+    float: right;
+}
+
+#add_line_tarde:hover {
+    background-color: #45a049;
+}
+
+.time-inputs {
+    display: flex;
+    justify-content: space-between;
+}
+
+.time-inputs input {
+    width: 48%;
+}
+
+.delete-btn {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #e60000;
+}
+.custom-time {
+    background-color: #f0f0f0;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.UPJ {
+    background-color: transparent; /* Fundo transparente */
+    border-color:white; /* Remove a borda */
+    outline: none; /* Remove o contorno ao focar */
+    font-size: 16px; /* Ajuste o tamanho da fonte conforme necessário */
+    color: #ffffff; /* Cor do texto */
+    text-align: center;
+}
+
+.hora-entrada{
+    background-color: transparent; /* Fundo transparente */
+    border-color:white; /* Remove a borda */
+    outline-color: white; /* Remove o contorno ao focar */
+    font-size: 16px; /* Ajuste o tamanho da fonte conforme necessário */
+    color: #000000; /* Cor do texto */
+    text-align: center;
+
+}
+
+.hora-saida{
+    background-color: transparent; /* Fundo transparente */
+    border-color:white; /* Remove a borda */
+    outline-color: white; /* Remove o contorno ao focar */
+    font-size: 16px; /* Ajuste o tamanho da fonte conforme necessário */
+    color: #000000; /* Cor do texto */
+    text-align: center;
+}
+
+#UPJ-options{
+    width: 20px;
+    height: 18px;
+}
+
+.afternoon-row {
+    background-color: #b34023; /* Cor diferenciada */
+}
+
+
+.header-section { /*containeres Manhã e Tarde */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px 0px 0px ;
+    background-color: #236399; 
+    color: white;
+    cursor: default;
+    border-radius: 7px;
+    
+    
+   
+    
+}
+
+#head_manha {
+    text-align: center;
+    align-items: center;
+
+}
+
+.table-container {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease;
+    
+}
+
+.table-container.open {
+    max-height: 100vh; /* Defina um valor suficiente para o conteúdo expandido */
+    
+}
+
+.table-container table {
+    border-radius: 7px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border-radius: 7px;
+    
+}
+
+.table-container th, .table-container td {
+    padding: 8px;
+    text-align: center;
+}
+
+/* Botão de seta com transição suave */
+.toggle-btn {
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+
+/* Classe para rotacionar a seta quando a tabela está aberta */
+.rotate {
+    transform: rotate(180deg);
+}
