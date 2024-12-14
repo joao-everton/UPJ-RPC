@@ -30,7 +30,7 @@
         <h1>RELATÓRIO DE SAÍDA E ENTRADA DE EQUIPAMENTOS</h1>   
     </header>
     <nav id="info_gerais">
-        <div class="UPJ_box" style="background-color: hwb(224 9% 13%);">
+        <div class="UPJ_box">
             <h2>UPJ</h2>
             <label class="theme-switch">
                 <input type="checkbox" class="checkbox">
@@ -47,7 +47,7 @@
                 </div>
             </label>
         </div>
-        <div class="viagem" style="background-color: #184dddcc;">
+        <div class="viagem">
             <h2>VIAGEM</h2>
             <input type="checkbox" class="viagem_check_sim">
             <input type="checkbox" class="viagem_check_nao">
@@ -69,20 +69,27 @@
                 </thead>
             </table>
         </div>
-        <div class="mochilink" style="display: flex; text-align: center; justify-content:center; align-items: center;">
-            <h2></h2>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                <label class="form-check-label" for="flexSwitchCheckDefault" id="switchLabel">Manhã</label>
-              </div>
+        <div class="mochilink">
+            <h2>MOCHILINK</h2>
         </div>
         <div class="carro">
             <h2>CARRO</h2>
         </div>
     </nav>
-    <section>
 
+    <section>
+        <table class="table_equips">
+            <thead>
+                <tr>
+                    <th>QNT.</th>
+                    <th>EQUIPAMENTO</th>
+                    <th>DESCRIÇÃO</th>
+                    <th>COMENTÁRIOS</th>
+                </tr>
+            </thead>
+        </table>
     </section>
+
     <footer id="saidas_entradas"> <!--Footer com entradas e saídas-->
         <div class="saidas"> <!--Saídas 1 e 2-->
             <div class="saida1">
