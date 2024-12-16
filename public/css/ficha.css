@@ -365,10 +365,16 @@ h3 {
 
 
 
-.table_equips { /*Tabela da ficha*/
-
+.table_equips th, td{ /*Tabela da ficha*/
+  color: white;
 }
 
 h2 {
   color: white;
+}
+
+.table_equips thead {
+  background-color: red;
+  border-bottom-right-radius: 15px;
+
 }
