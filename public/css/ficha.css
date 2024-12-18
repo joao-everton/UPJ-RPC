@@ -40,17 +40,19 @@ nav#slide-menu>ul {
   transition: all 300ms;
 }
 
-nav#slide-menu>ul li {
+nav#slide-menu>ul li a {
   color: #dfe5eb;
   padding: 6px 0;
   cursor: pointer;
+  text-decoration: none;
 }
 
-nav#slide-menu>ul li:hover {
+
+nav#slide-menu>ul li a:hover {
   color: #182ace;
 }
 
-nav#slide-menu>ul li:before {
+nav#slide-menu>ul li a:before {
   font-family: "Rubik", sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -309,6 +311,9 @@ footer { /*rodapé - Saída e entrada*/
   text-align: center;
   align-items: center;
   height: 100%;
+  border-bottom: 1.7px black solid;
+  padding: 10px;
+  border-image: linear-gradient(to left, transparent 3%, black 1%) 1;
   
 
 }
@@ -319,8 +324,7 @@ footer { /*rodapé - Saída e entrada*/
   align-items: center;
   text-align: center;
   justify-content: center;
-  border-bottom: 1.7px black solid;
-  border-image: linear-gradient(to left, transparent 3%, black 1%) 1;
+  
   
 }
 
@@ -347,8 +351,10 @@ footer { /*rodapé - Saída e entrada*/
   flex-direction: row;
   flex: 50%;
   display: flex;
-  align-items: center;
   text-align: center;
+  align-items: center;
+  height: 100%;
+  padding: 10px;
 }
 
 .entrada1,

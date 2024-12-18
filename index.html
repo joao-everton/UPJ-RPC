@@ -6,78 +6,94 @@
     <link rel="stylesheet" href="public/css/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="ficha.html">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 </head>
 
 <body>
-    <header>
-        <div class="img_header">
-            <img src="assets/rpclogo.png" class="logo" />
-        </div>
-        <div class="title">
-            <h1>ESCALA DE REPORTAGEM</h1>
-            <form class="form-inline" style="text-align: center;">
-                <input type="date" id="reportDate" max="9999-12-31">
-            </form>
-        </div>
-    </header>
+    <nav id="slide-menu">
+        <ul>
+            <li>Home</li>
+            <li><a href="ficha.html">Ficha</a></li>
+            <li>Profile</li>
+            <li>Settings</li>
+            <li>Logout</li>
+        </ul>
+    </nav>
+    <!-- Content -->
+    <div id="content">
+        <header>
+            <div class="menu-trigger"></div>
+            <div class="img_header">
+                <img src="assets/rpclogo.png" class="logo" />
+            </div>
+            <div class="title">
+                <h1>ESCALA DE REPORTAGEM</h1>
+                <form class="form-inline" style="text-align: center;">
+                    <input type="date" id="reportDate" max="9999-12-31">
+                </form>
+            </div>
+        </header>
 
-    <main>
-        <!-- Seção da manhã -->
-        <div class="bloco_manha">
-            <div id="head_manha" class="header-section">
-                <h3>MANHÃ</h3>
-                <button class="toggle-btn" onclick="toggleTable('manha')">▼</button>
+        <main>
+            <!-- Seção da manhã -->
+            <div class="bloco_manha">
+                <div id="head_manha" class="header-section">
+                    <h3>MANHÃ</h3>
+                    <button class="toggle-btn" onclick="toggleTable('manha')">▼</button>
+                </div>
+                <div id="table_manha_container" class="table-container open">
+                    <table id="table_manha">
+                        <thead>
+                            <tr>
+                                <th>UPJ</th>
+                                <th>HORÁRIO</th>
+                                <th>REPÓRTER</th>
+                                <th>REP. CINEMAT.</th>
+                                <th>AUXILIAR</th>
+                                <th>CARRO</th>
+                                <th>MOCHILINK</th>
+                                <th>ACESSÓRIOS / EVENTOS</th>
+                                <th>AÇÃO</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody_manha"></tbody>
+                    </table>
+                    <button id="add_line_manha">+</button>
+                </div>
             </div>
-            <div id="table_manha_container" class="table-container open">
-                <table id="table_manha">
-                    <thead>
-                        <tr>
-                            <th>UPJ</th>
-                            <th>HORÁRIO</th>
-                            <th>REPÓRTER</th>
-                            <th>REP. CINEMAT.</th>
-                            <th>AUXILIAR</th>
-                            <th>CARRO</th>
-                            <th>MOCHILINK</th>
-                            <th>ACESSÓRIOS / EVENTOS</th>
-                            <th>AÇÃO</th>
-                        </tr>
-                    </thead>
-                    <tbody class="tbody_manha"></tbody>
-                </table>
-                <button id="add_line_manha">+</button>
-            </div>
-        </div>
 
-        <!-- Seção da tarde -->
-        <div class="bloco_tarde">
-            <div id="head_tarde" class="header-section" style="text-align: center;">
-                <h3>TARDE</h3>
-                <button class="toggle-btn" onclick="toggleTable('tarde')">▼</button>
+            <!-- Seção da tarde -->
+            <div class="bloco_tarde">
+                <div id="head_tarde" class="header-section" style="text-align: center;">
+                    <h3>TARDE</h3>
+                    <button class="toggle-btn" onclick="toggleTable('tarde')">▼</button>
+                </div>
+                <div id="table_tarde_container" class="table-container closed">
+                    <table id="table_tarde">
+                        <thead>
+                            <tr>
+                                <th>UPJ</th>
+                                <th>HORÁRIO</th>
+                                <th>REPÓRTER</th>
+                                <th>REP. CINEMAT.</th>
+                                <th>AUXILIAR</th>
+                                <th>CARRO</th>
+                                <th>MOCHILINK</th>
+                                <th>ACESSÓRIOS / EVENTOS</th>
+                                <th>AÇÃO</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbody_tarde"></tbody>
+                    </table>
+                    <button id="add_line_tarde">+</button>
+                </div>
             </div>
-            <div id="table_tarde_container" class="table-container closed">
-                <table id="table_tarde">
-                    <thead>
-                        <tr>
-                            <th>UPJ</th>
-                            <th>HORÁRIO</th>
-                            <th>REPÓRTER</th>
-                            <th>REP. CINEMAT.</th>
-                            <th>AUXILIAR</th>
-                            <th>CARRO</th>
-                            <th>MOCHILINK</th>
-                            <th>ACESSÓRIOS / EVENTOS</th>
-                            <th>AÇÃO</th>
-                        </tr>
-                    </thead>
-                    <tbody class="tbody_tarde"></tbody>
-                </table>
-                <button id="add_line_tarde">+</button>
-            </div>
-        </div>
-
-        <script src="public/js/script.js"></script>
-    </main>
+        
+            <script src="public/js/script.js"></script>
+        </main>
+    </div>
 </body>
 
 </html>
