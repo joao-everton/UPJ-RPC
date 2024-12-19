@@ -1,20 +1,27 @@
 
 *{
     font-family: "Rubik", sans-serif!important;
+    
 }
 body {
     height: 100%; /* Garante que o body ocupe 100% da altura da janela */
     margin: 0; /* Remove margens padrão */
     padding: 0; /* Remove o preenchimento padrão */
-    background-color: rgba(24, 49, 97, 0.952)!important; /* Cor de fundo */
+    background-color: var(--primary-bg-color)!important; /* Cor de fundo */
+    
 }
 
+:root {
+    --primary-bg-color: rgb(24, 49, 97);
+    --gradient-primary-color: linear-gradient(to top right, #004986, #236399);
+    --white: white;
+  }
 
 /*************************Começo cabeçalho******************************/
 header{
     overflow: hidden;
     display: flex;
-    background: linear-gradient(to top right, #004986 , #236399 ); 
+    background: var(--gradient-primary-color); 
     max-height: 90px;
     height: 100%;
     padding: 0;
@@ -23,6 +30,7 @@ header{
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     text-align: center;
+    
 }
 
 .title{
@@ -38,7 +46,8 @@ header{
     margin-top: 15px;
     margin-bottom: 0px;
     padding: 0px;
-    color: white;
+    color: var(--white);
+    font-weight: bolder;
     
     
 }
@@ -48,7 +57,7 @@ header{
     padding: 0px;
     margin-top: 0px;
     margin-bottom: 50px;
-    color: white;
+    color: var(--white);
 }
 
 .img_header{
@@ -77,7 +86,7 @@ header{
 
 #reportDate{
     padding: 0px;
-    color: aliceblue;
+    color: var(--white);
     border-radius: 10px;
     background-color: transparent;
     font-size: 16px;
@@ -269,6 +278,7 @@ input[type="time"]:focus, input[type="text"]:focus, select:focus {
     color: white;
     cursor: default;
     border-radius: 7px;
+    font-family:"Rubik", sans-serif;
     
     
    
