@@ -179,6 +179,7 @@ header {
 
 h1 {
   color: white;
+  padding: 0;
 }
 
 #info_gerais {
@@ -229,16 +230,30 @@ h1 {
 
 }
 
-.viagem_check_sim { /*Check de Sim da Viagem*/
-  float: left;
-  align-self: center;
-  margin-left: 10px;
+input[type="checkbox"] {
+  display: block; /* Faz o checkbox se comportar como um elemento de bloco */
+  margin: 0 auto; /* Centraliza o checkbox dentro do bloco */
+  appearance: none;
   width: 20px;
   height: 20px;
-  
-  
-
+  border: 2px solid red;
+  cursor: pointer;
 }
+
+input[type="checkbox"]:checked::after {
+  border-color: #4CAF50; /* Muda a cor da borda ao marcar */
+  content: '✔'; /* Opcional: Adiciona um símbolo ou estilo ao estado marcado */
+  color: white;
+}
+
+label {
+  display: inline-block; /* Coloca o texto abaixo do checkbox */
+  margin-top: 5px; /* Espaçamento entre o checkbox e o texto */
+  font-size: 14px; /* Ajusta o tamanho da fonte do texto */
+  color: #333; /* Cor do texto */
+}
+
+
 
 .equipe {
   flex: 0.51;
@@ -246,7 +261,9 @@ h1 {
   background-color: #1466c3;
   z-index: 2;
   text-align: center;
-
+  display: flex;
+  flex-direction: column; /* Alinha os elementos na vertical dentro da div */
+  align-items: center; /* Centraliza os itens horizontalmente */
 
 }
 
@@ -343,6 +360,8 @@ footer { /*rodapé - Saída e entrada*/
 .box_saida1, .box_saida2 {
   float: left;
   flex: 30%;
+  padding: 0px;
+  margin: 0px;
 }
 
 
