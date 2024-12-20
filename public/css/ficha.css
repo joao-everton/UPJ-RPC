@@ -236,8 +236,9 @@ input[type="checkbox"] {
   appearance: none;
   width: 20px;
   height: 20px;
-  border: 2px solid red;
+  border: 2px solid gray;
   cursor: pointer;
+  transition: 1000ms;
 }
 
 input[type="checkbox"]:checked::after {
