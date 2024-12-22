@@ -41,7 +41,7 @@ function addNewRow(tableId) {
     const cellDelete = newRow.insertCell(8);
 
     // Conteúdo das células
-    cellUPJ.innerHTML = `<input type="text" class="UPJ" style="width: 70px;">
+    cellUPJ.innerHTML = `<input type="text" class="UPJ" style="width: 50px; padding: 0px;">
                          <select id="UPJ-options"></select>`;
 
     cellHorario.innerHTML = `<div class="time-inputs">

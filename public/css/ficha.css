@@ -6,6 +6,7 @@
 :root {
   --primary-bg-color: rgb(24, 49, 97);
   --gradient-primary-color: linear-gradient(to top right, #004986, #236399);
+  --black: #000000; 
 }
 
 body {
@@ -14,6 +15,7 @@ body {
   color: #353d46;
   font-family: "Rubik", sans-serif;
   width: 100vh;
+  
 
 }
 
@@ -104,8 +106,28 @@ div#content {
 
 div#content h1 {
   font-family: "Rubik", sans-serif;
-  font-size: 32px;
+  font-size: clamp(1rem, 3vh, 3rem);
   font-weight: bold;
+  color: white;
+}
+
+div#content h2 {
+  font-family: "Rubik", sans-serif;
+  font-size: clamp(0.1rem, 2vh, 3rem);
+  font-weight: bold;
+  color: white;
+}
+
+div#content h3 {
+  font-family: "Rubik", sans-serif;
+  font-size: clamp(1rem, 2vh, 3rem);
+  font-weight: bold;
+  color: white;
+}
+
+div#content th, td { /* tabela dos inputs dentro do box das equipes */
+  color: white;
+  font-size: clamp(0.5em, 2vh,3em);
 }
 
 div#content div.menu-trigger {
@@ -160,7 +182,7 @@ header {
   /* Cabeçalho com o título do relatório */
   overflow: hidden;
   background: var(--gradient-primary-color);
-  max-height: 100px;
+  max-height: 5em;
   height: 100%;
   padding: 0;
   float: top;
@@ -177,10 +199,6 @@ header {
 }
 
 
-h1 {
-  color: white;
-  padding: 0;
-}
 
 #info_gerais {
   display: flex;
@@ -230,29 +248,7 @@ h1 {
 
 }
 
-input[type="checkbox"] {
-  display: block; /* Faz o checkbox se comportar como um elemento de bloco */
-  margin: 0 auto; /* Centraliza o checkbox dentro do bloco */
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  border: 2px solid gray;
-  cursor: pointer;
-  transition: 1000ms;
-}
 
-input[type="checkbox"]:checked::after {
-  border-color: #4CAF50; /* Muda a cor da borda ao marcar */
-  content: '✔'; /* Opcional: Adiciona um símbolo ou estilo ao estado marcado */
-  color: white;
-}
-
-label {
-  display: inline-block; /* Coloca o texto abaixo do checkbox */
-  margin-top: 5px; /* Espaçamento entre o checkbox e o texto */
-  font-size: 14px; /* Ajusta o tamanho da fonte do texto */
-  color: #333; /* Cor do texto */
-}
 
 
 
@@ -268,10 +264,7 @@ label {
 
 }
 
-.rep_input {
-  width: 50px;
-  height: 20px;
-}
+
 
 
 .mochilink {
@@ -388,19 +381,15 @@ footer { /*rodapé - Saída e entrada*/
 
 
 
-h3 {
-  font-size: 23px;
-}
+
 
 
 
 .table_equips th, td{ /*Tabela da ficha*/
   color: white;
+  
 }
 
-h2 {
-  color: white;
-}
 
 
 .table_equips thead{

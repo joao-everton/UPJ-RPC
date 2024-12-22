@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Relatório</title>
     <link rel="stylesheet" href="public/css/ficha.css">
     <link rel="stylesheet" href="public/css/buttonswitch.css">
@@ -15,95 +16,136 @@
 
 
 <!-- Content -->
-<body>
 
-<nav id="slide-menu">
-	<ul>
-		<li><a href="index.html">Escala</a></li>
-		<li>Dashboard</li>
-		<li>Profile</li>
-		<li>Settings</li>
-		<li>Logout</li>
-	</ul>
-</nav>
-<div id="content">    
-    <header style="text-align: center;">
-        <div class="menu-trigger"></div>
-        <h1>RELATÓRIO DE SAÍDA E ENTRADA DE EQUIPAMENTOS</h1>   
-    </header>
-    <nav id="info_gerais">
-        <div class="UPJ_box">
-            <h2>UPJ</h2>
-            <label class="theme-switch">
-                <input type="checkbox" class="checkbox">
-                <div class="container">
-                    <div class="text"></div> <!-- Adicionei esta div para o texto -->  
-                  <div class="circle-container">
-                    <div class="sun-moon-container">
-                      <div class="moon">
-                        <div class="spot"></div>
-                        <div class="spot"></div>
-                        <div class="spot"></div>
-                      </div>
+<body>
+    <nav id="slide-menu">
+        <ul>
+            <li><a href="index.html">Escala</a></li>
+            <li>Dashboard</li>
+            <li>Profile</li>
+            <li>Settings</li>
+            <li>Logout</li>
+        </ul>
+    </nav>
+    <div id="content">
+        <header style="text-align: center;">
+            <div class="menu-trigger"></div>
+            <h1>RELATÓRIO DE SAÍDA E ENTRADA DE EQUIPAMENTOS</h1>
+        </header>
+        <nav id="info_gerais">
+            <div class="UPJ_box">
+                <h2>UPJ</h2>
+                <label class="theme-switch">
+                    <input type="checkbox" class="checkbox">
+                    <div class="container">
+                        <div class="text"></div> 
+                        <div class="circle-container">
+                            <div class="sun-moon-container">
+                                <div class="moon">
+                                    <div class="spot"></div>
+                                    <div class="spot"></div>
+                                    <div class="spot"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+                </label>
+            </div>
+            <div class="viagem">
+                <h2>VIAGEM</h2>
+                <div class="form-check-sim">
+                    <input class="form-check-input" style="background-color: transparent; width: 25px; height: 25px;"
+                        type="checkbox" value="" id="check-sim">
+                    <label class="form-check-label" for="check-sim" style="margin: 0;">
+                        SIM
+                    </label>
                 </div>
-            </label>
-        </div>
-        <div class="viagem">
-            <h2>VIAGEM</h2>
-            <input type="checkbox" class="viagem_check_sim">
-            <label for="viagem_check_sim">SIM</label>
-            <input type="checkbox" class="viagem_check_nao">
-            <label for="viagem_check_nao">NÃO</label>
-        </div>
-        <div class="equipe">
-            <h2>EQUIPE</h2>
-            <table>
+                <div class="form-check-nao">
+                    <input class="form-check-input" style="background-color: transparent; width: 25px; height: 25px;"
+                        type="checkbox" value="" id="check-nao">
+                    <label class="form-check-label" for="check-nao">
+                        NÃO
+                    </label>
+                </div>
+            </div>
+            <div class="equipe">
+                <h2>EQUIPE</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>REPÓRTER</th>
+                            <th>REP. CINEMAT</th>
+                            <th>AUXILIAR</th>
+                        </tr>
+                        <tr>
+                            <th><input type="text" class="reporter" style="width: clamp(10px, 15vw, 2000px); height: clamp(1em, 3vh, 6em);"></th>
+                            <th><input type="text" class="rep_cine" style="width: clamp(10px, 15vw, 2000px); height: clamp(1em, 3vh, 6em);"></th>
+                            <th><input type="text" class="auxiliar" style="width: clamp(10px, 15vw, 2000px); height: clamp(1em, 3vh, 6em);"></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="mochilink">
+                <h2>MOCHILINK</h2>
+            </div>
+            <div class="carro">
+                <h2>CARRO</h2>
+            </div>
+        </nav>
+
+        <section>
+            <table class="table_equips" style="width: 100%; align-items: center; text-align: center;">
                 <thead>
                     <tr>
-                        <th>REPÓRTER</th>
-                        <th>REP. CINEMAT</th>
-                        <th>AUXILIAR</th>
-                    </tr>
-                    <tr>
-                        <th><input type="text" class="reporter"></th>
-                        <th><input type="text" class="rep_cine"></th>
-                        <th><input type="text" class="auxiliar"></th>
+                        <th>QNT.</th>
+                        <th>EQUIPAMENTO</th>
+                        <th>DESCRIÇÃO</th>
+                        <th>COMENTÁRIOS</th>
                     </tr>
                 </thead>
+                <tbody class="tbody_ficha">
+                </tbody>
             </table>
-        </div>
-        <div class="mochilink">
-            <h2>MOCHILINK</h2>
-        </div>
-        <div class="carro">
-            <h2>CARRO</h2>
-        </div>
-    </nav>
+        </section>
 
-    <section>
-        <table class="table_equips" style="width: 100%; align-items: center; text-align: center;">
-            <thead>
-                <tr>
-                    <th>QNT.</th>
-                    <th>EQUIPAMENTO</th>
-                    <th>DESCRIÇÃO</th>
-                    <th>COMENTÁRIOS</th>
-                </tr>
-            </thead>
-            <tbody class="tbody_ficha">
-            </tbody>
-        </table>
-    </section>
-
-    <footer id="saidas_entradas"> <!--Footer com entradas e saídas-->
-        <div class="saidas"> <!--Saídas 1 e 2-->
-            <div class="saida1">
-                <div class="box_saida1">
-                    <h1>SAÍDA 1</h1>
+        <footer id="saidas_entradas"> <!--Footer com entradas e saídas-->
+            <div class="saidas"> <!--Saídas 1 e 2-->
+                <div class="saida1">
+                    <div class="box_saida1">
+                        <h1>SAÍDA 1</h1>
+                    </div>
+                    <div class="info_saidas1">
+                        <div class="data_saida1">
+                            <h3>Data</h3>
+                            <input type="date">
+                        </div>
+                        <div class="hora_saida1">
+                            <h3>Hora</h3>
+                            <input type="time">
+                        </div>
+                    </div>
                 </div>
-                <div class="info_saidas1">    
+                <div class="saida2">
+                    <div class="box_saida2">
+                        <h1>SAÍDA 2</h1>
+                    </div>
+                    <div class="info_saidas2">
+                        <div class="data_saida2">
+                            <h3>Data</h3>
+                            <input type="date">
+                        </div>
+                        <div class="hora_saida2">
+                            <h3>Hora</h3>
+                            <input type="time">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="entradas">
+                <div class="entrada1">
+                    <div class="box_entrada1">
+                        <h1>ENTRADA 1</h1>
+                    </div>
                     <div class="data_saida1">
                         <h3>Data</h3>
                         <input type="date">
@@ -113,53 +155,22 @@
                         <input type="time">
                     </div>
                 </div>
-            </div>
-            <div class="saida2">
-                <div class="box_saida2">
-                    <h1>SAÍDA 2</h1>
-                </div>
-                <div class="info_saidas2">
-                    <div class="data_saida2">
+                <div class="entrada2">
+                    <div class="box_entrada2">
+                        <h1>ENTRADA 2</h1>
+                    </div>
+                    <div class="data_entrada2">
                         <h3>Data</h3>
                         <input type="date">
                     </div>
-                    <div class="hora_saida2">
+                    <div class="hora_entrada2">
                         <h3>Hora</h3>
                         <input type="time">
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="entradas">
-            <div class="entrada1">
-                <div class="box_entrada1">
-                    <h1>ENTRADA 1</h1>
-                </div>
-                <div class="data_saida1">
-                    <h3>Data</h3>
-                    <input type="date">
-                </div>
-                <div class="hora_saida1">
-                    <h3>Hora</h3>
-                    <input type="time">
-                </div>
-            </div>
-            <div class="entrada2">
-                <div class="box_entrada2">
-                    <h1>ENTRADA 2</h1>
-                </div>
-                <div class="data_entrada2">
-                    <h3>Data</h3>
-                    <input type="date">
-                </div>
-                <div class="hora_entrada2">
-                    <h3>Hora</h3>
-                    <input type="time">
-                </div>
-            </div>
-        </div>
 
-    </footer>
+        </footer>
 
 </body>
 
