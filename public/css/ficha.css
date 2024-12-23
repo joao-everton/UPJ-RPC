@@ -116,18 +116,20 @@ div#content h2 {
   font-size: clamp(0.1rem, 2vh, 3rem);
   font-weight: bold;
   color: white;
+  margin-top: 5px;
+  text-align: center;
 }
 
 div#content h3 {
   font-family: "Rubik", sans-serif;
-  font-size: clamp(1rem, 2vh, 3rem);
+  font-size: clamp(0.1rem, 2vh, 3rem);
   font-weight: bold;
   color: white;
 }
 
 div#content th, td { /* tabela dos inputs dentro do box das equipes */
   color: white;
-  font-size: clamp(0.5em, 2vh,3em);
+  font-size: clamp(0.5em, 1.5vh,3em);
 }
 
 div#content div.menu-trigger {
@@ -282,13 +284,7 @@ header {
 
 }
 
-h2 {
-  text-align: center;
 
-  color: white;
-  font-size: 32px;
-  margin: 10px 0 0 0;
-}
 
 section {
   flex: 1;
