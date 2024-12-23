@@ -3,7 +3,7 @@
     --container-width: clamp(1em, 9em, 10em); /* Ajustar a largura do container */
     --container-height: clamp(1em, 3.5em, 10em) !important; /* Ajustar a altura do container */
     --circle-container-diameter: clamp(1em, 2.5em, 10em) !important; /* Ajustar o diâmetro do círculo */
-    --sun-moon-diameter: 1.5rem ; /* Ajustar o diâmetro do sol/lua */
+    --sun-moon-diameter: clamp(0.1rem, 0.4vw + 1rem, 1.5rem); /* Ajustar o diâmetro do sol/lua */
     --sun-bg: #ECCA2F ; /* Cor do sol */
     --moon-bg: #C4C9D1 ; /* Cor da lua */
     --spot-color: #959DB1 ; /* Cor das manchas na lua */
@@ -45,8 +45,8 @@
 .sun-moon-container {
     width: var(--sun-moon-diameter);
     height: var(--sun-moon-diameter);
-    margin: auto;
-    border-radius: 6.25em;
+    margin: 8px 0px 0px 8px;
+    border-radius: 50%;
     background-color: var(--sun-bg);
     box-shadow: 0.062em 0.062em 0.062em 0em rgba(254, 255, 239, 0.61) inset, 0em -0.062em 0.062em 0em #a1872a inset;
     filter: drop-shadow(0.062em 0.125em 0.125em rgba(0, 0, 0, 0.25)) drop-shadow(0em 0.062em 0.125em rgba(0, 0, 0, 0.25));
@@ -125,7 +125,7 @@
     top: 50%; /* Centraliza verticalmente */
     left: 70%; /* Centraliza horizontalmente */
     transform: translate(-50%, -50%); /* Ajusta a posição */
-    font-size: clamp(0.5em, 0.6vw, 1em); /* Tamanho responsivo */
+    font-size: clamp(0.1em, 0.6vw, 1em); /* Tamanho responsivo */
     font-weight: bold;
     color: #000; /* Cor do texto */
     pointer-events: none; /* Garante que o texto não atrapalhe cliques */
