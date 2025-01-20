@@ -10,5 +10,11 @@
 
 }).call(this);
 
+(function()) {
+	var $body = document.body
+	var $check_sim = $body.getElementsByClassName('check-sim')
+	var $check_nao = $body.getElementsByClassName('check-nao')
 
+	if 
+}
 

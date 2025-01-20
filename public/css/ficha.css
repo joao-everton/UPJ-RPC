@@ -118,6 +118,8 @@ div#content h2 {
   color: white;
   margin-top: 5px;
   text-align: center;
+  margin-bottom: 0;
+
 }
 
 div#content h3 {
