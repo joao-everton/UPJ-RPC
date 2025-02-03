@@ -1,0 +1,16 @@
+body {
+    font-family: cursive;
+    font-weight: bolder;
+    background-color: rgb(122, 135, 255);
+    text-align: center;
+    
+}
+
+#login_box {
+    border: 2px solid black;
+    border-radius: 9px;
+    padding: 5px 0px 5px 0px;
+    margin: 0;
+    
+}
+
