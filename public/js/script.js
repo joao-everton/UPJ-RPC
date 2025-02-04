@@ -38,7 +38,7 @@ function addNewRow(tableId) {
     const cellCarro = newRow.insertCell(5);
     const cellMochilink = newRow.insertCell(6);
     const cellAcessorios = newRow.insertCell(7);
-    const cellDelete = newRow.insertCell(8);
+    const cellAcoes = newRow.insertCell(8);
 
     // Conteúdo das células
     cellUPJ.innerHTML = `<input type="text" class="UPJ" style="width: 50px; padding: 0px;">
@@ -56,9 +56,13 @@ function addNewRow(tableId) {
     cellMochilink.innerHTML = `<input type="text" placeholder="Mochilink">`;
     cellAcessorios.innerHTML = `<input type="text" placeholder="Acessórios / Eventos">`;
 
+
     // Botão de deletar na última célula
-    cellDelete.innerHTML = `<button class="delete-btn">Deletar</button>`;
-    cellDelete.querySelector(".delete-btn").addEventListener("click", function () {
+    cellAcoes.innerHTML = `<button class="delete-btn">🗑</button>
+                           <form method="post">
+                           <button type="submit">↵</button>
+                           </form> `;
+    cellAcoes.querySelector(".delete-btn").addEventListener("click", function () {
         if (table.rows.length > 1) {
             table.deleteRow(newRow.rowIndex - 1);
         } else {

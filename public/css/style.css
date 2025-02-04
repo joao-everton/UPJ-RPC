@@ -356,7 +356,7 @@ select:focus {
 }
 
 .table-container {
-    overflow: hidden;
+    overflow: auto;
     max-height: 0;
     transition: max-height 0.5s ease;
 
@@ -489,6 +489,8 @@ div#content {
     transition: all 300ms;
     background-color: rgba(24, 49, 97, 0.952) !important;
     /* Cor de fundo */
+    overflow: auto;
+    
 }
 
 div#content div.menu-trigger {
