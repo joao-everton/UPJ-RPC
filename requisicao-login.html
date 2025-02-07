@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprovação de Usuários</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-lg p-6 bg-white shadow-lg rounded-xl scroll">
+        <h2 class="text-2xl font-semibold text-center mb-4">Aprovação de Usuários</h2>
+        <ul id="userList" class="space-y-4" >
+            <!-- Lista de usuários pendentes será adicionada aqui -->
+        </ul>
+    </div>
+
+    <script>
+        const users = [
+            { id: 1, name: "João Silva", email: "joao@email.com" },
+            { id: 1, name: "João Silva", email: "joao@email.com" },
+            { id: 1, name: "João Silva", email: "joao@email.com" },
+            { id: 1, name: "João Silva", email: "joao@email.com" },
+            { id: 1, name: "João Silva", email: "joao@email.com" },
+            { id: 1, name: "João Silva", email: "joao@email.com" },
+            { id: 1, name: "João Silva", email: "joao@email.com" },
+            { id: 2, name: "Maria Souza", email: "maria@email.com" },
+            { id: 3, name: "Carlos Lima", email: "carlos@email.com" }
+        ];
+
+        const userList = document.getElementById("userList");
+
+        function renderUsers() {
+            userList.innerHTML = "";
+            users.forEach(user => {
+                const userItem = document.createElement("li");
+                userItem.classList.add("p-4", "bg-gray-50", "rounded-md", "shadow-md", "flex", "justify-between", "items-center");
+                userItem.innerHTML = `
+                    <div>
+                        <p class="font-semibold">${user.name}</p>
+                        <p class="text-sm text-gray-600">${user.email}</p>
+                    </div>
+                    <div class="space-x-2">
+                        <button onclick="approveUser(${user.id})" class="bg-green-500 text-white px-3 py-1 rounded-md">Aprovar</button>
+                        <button onclick="rejectUser(${user.id})" class="bg-red-500 text-white px-3 py-1 rounded-md">Rejeitar</button>
+                    </div>
+                `;
+                userList.appendChild(userItem);
+            });
+        }
+
+        function approveUser(id) {
+            alert(`Usuário ID ${id} aprovado!`);
+            removeUser(id);
+        }
+
+        function rejectUser(id) {
+            alert(`Usuário ID ${id} rejeitado!`);
+            removeUser(id);
+        }
+
+        function removeUser(id) {
+            const index = users.findIndex(user => user.id === id);
+            if (index !== -1) {
+                users.splice(index, 1);
+                renderUsers();
+            }
+        }
+
+        renderUsers();
+    </script>
+</body>
+</html>

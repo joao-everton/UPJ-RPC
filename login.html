@@ -1,38 +1,27 @@
-import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-
-export default function AuthTab() {
-  const [isLogin, setIsLogin] = useState(true);
-
-return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <Card className="w-96 p-6 shadow-lg rounded-xl">
-        <CardContent>
-          <h2 className="text-2xl font-semibold text-center mb-4">
-            {isLogin ? "Login" : "Registro"}
-          </h2>
-          <form className="space-y-4">
-            {!isLogin && (
-              <Input type="text" placeholder="Nome" className="w-full" required />
-            )}
-            <Input type="email" placeholder="Email" className="w-full" required />
-            <Input type="password" placeholder="Senha" className="w-full" required />
-            <Button type="submit" className="w-full">
-              {isLogin ? "Entrar" : "Registrar"}
-            </Button>
-          </form>
-          <div className="text-center mt-4">
-            <button
-              onClick={() => setIsLogin(!isLogin)}
-              className="text-blue-500 hover:underline"
-            >
-              {isLogin ? "Criar uma conta" : "Já tem uma conta? Faça login"}
-            </button>
-          </div>
-        </CardContent>
-      </Card>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Registro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-blue-300">
+    <div class="w-96 p-6 bg-gray-100 shadow-lg rounded-xl">
+        <h2 id="formTitle" class="text-2xl font-bold text-center mb-4">Login</h2>
+        <form id="authForm" class="space-y-4" method="post">
+            <input id="nameField" type="text" placeholder="Nome" class="w-full p-2 border rounded-md hidden" required>
+            <input type="email" placeholder="Email" class="w-full p-2 border rounded-md" required>
+            <input id='telefone' type="phone" placeholder="Telefone" class="w-full p-2 border rounded-md hidden" required>
+            <input type="password" placeholder="Senha" class="w-full p-2 border rounded-md" required>
+            <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded-md">Entrar</button>
+        </form>
+        <div class="text-center mt-4">
+            <button id="toggleButton" class="text-blue-500 hover:underline">Criar uma conta</button>
+        </div>
     </div>
-  );
-}
+    <script src="public\js\login.js">
+        
+    </script>
+</body>
+</html>
