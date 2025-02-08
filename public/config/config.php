@@ -1,6 +1,6 @@
 <?php
     $db_server = "localhost";
-    $db_user = "user";
+    $db_user = "root";
     $db_pass = "bruno070601";
     $db_name = "upj_db";
     $conn = "";
