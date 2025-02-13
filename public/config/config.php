@@ -1,5 +1,5 @@
 <?php
-    $db_server = "localhost:3306";
+    $db_server = "localhost";
     $db_user = "root";
     $db_pass = "";
     $db_name = "upj_db";
@@ -12,5 +12,5 @@
         die("Erro na conexão: " . mysqli_connect_error());
     }
 
-    echo "Conectado com sucesso";
+    echo "Conectado com sucesso!!!!!!!!";
 ?>
