@@ -6,59 +6,79 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h2>Aprovação de Usuários</h2>
-    <ul id="userList"></ul>
+    <!-- admin.html -->
+<h3>Usuários Pendentes</h3>
+<table id="usuariosTable">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Ação</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
 
-    <script>
-        function loadUsers() {
-    $.post("public/config/crud.php", { action: "getPendingUsers" }, function (data) {
-        const users = JSON.parse(data);
-        $("#userList").empty();
-        users.forEach(user => {
-            $("#userList").append(`
-                <li>
-                    ${user.nome} (${user.email})
-                    <button onclick="approve(${user.id_usuario})">Aprovar</button>
-                    <button onclick="reject(${user.id_usuario})">Rejeitar</button>
-                </li>
-            `);
+<script>
+    function buscarUsuariosPendentes() {
+        fetch('public/config/crud.php')
+            .then(response => response.json())
+            .then(data => {
+                const tableBody = document.querySelector('#usuariosTable tbody');
+                tableBody.innerHTML = '';
+
+                data.forEach(usuario => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${usuario.nome}</td>
+                        <td>${usuario.email}</td>
+                        <td>${usuario.telefone}</td>
+                        <td>
+                            <button onclick="aprovarUsuario(${usuario.id})">Aprovar</button>
+                            <button onclick="rejeitarUsuario(${usuario.id})">Rejeitar</button>
+                        </td>
+                    `;
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Erro ao buscar usuários pendentes:', error));
+    }
+
+    function aprovarUsuario(id) {
+        fetch('public/config/crud.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'aprovar', id: id })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Usuário aprovado!');
+                buscarUsuariosPendentes();
+            } else {
+                alert('Erro ao aprovar usuário.');
+            }
         });
-    });
-}
+    }
 
-function approve(id) {
-    $.ajax({
-        url: "public/config/crud.php",
-        type: "POST",
-        data: { action: "approveUser", id: id },
-        success: function(response) {
-            alert(response);  // Exibe a resposta do servidor
-            loadUsers();  // Atualiza a lista de usuários após a aprovação
-        },
-        error: function(xhr, status, error) {
-            alert("Erro ao aprovar o usuário: " + error);
-        }
-    });
-}
+    function rejeitarUsuario(id) {
+        fetch('public/config/crud.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'rejeitar', id: id })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Usuário rejeitado!');
+                buscarUsuariosPendentes();
+            } else {
+                alert('Erro ao rejeitar usuário.');
+            }
+        });
+    }
 
-function reject(id) {
-    $.ajax({
-        url: "public/config/crud.php",
-        type: "POST",
-        data: { action: "rejectUser", id: id },
-        success: function(response) {
-            alert(response);  // Exibe a resposta do servidor
-            loadUsers();  // Atualiza a lista de usuários após a rejeição
-        },
-        error: function(xhr, status, error) {
-            alert("Erro ao rejeitar o usuário: " + error);
-        }
-    });
-}
+    window.onload = buscarUsuariosPendentes;
+</script>
 
-// Carrega os usuários pendentes ao carregar a página
-loadUsers();
-
-    </script>
-</body>
-</html>

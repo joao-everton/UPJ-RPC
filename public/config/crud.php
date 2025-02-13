@@ -1,91 +1,59 @@
 <?php
 include "public/config/config.php";
 
-$action = $_POST['action'] ?? '';
-
-if ($action == "register") {
-    $nome = $_POST['nome'];
-    $email = $_POST['email'];
-    $telefone = $_POST['telefone'];
-    $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
-    
-    $sql = "INSERT INTO usuarios (funcao, nome, email, telefone, senha, praça, status) 
-            VALUES (DEFAULT, ?, ?, ?, ?, 'Curitiba', DEFAULT)";
-    
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssss", $nome, $email, $telefone, $senha);
-    
-    if ($stmt->execute()) {
-        echo "Usuário registrado com sucesso!";
+// Função de cadastro
+function cadastro($nome, $email, $telefone, $senha, $conn) {
+    $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
+    $sql = "INSERT INTO usuarios (nome, email, telefone, senha, praça) VALUES ($nome, $email, $telefone, $senhaHash)";
+    if ($conn->query($sql) === TRUE) {
+        return json_encode(["success" => true]);
     } else {
-        echo "Erro ao registrar usuário: " . $conn->error;
+        return json_encode(["success" => false]);
     }
 }
-
-if ($action == "login") {
-    $email = $_POST['email'];
-    $senha = $_POST['senha'];
-
-    $sql = "SELECT id_usuario, senha, status FROM usuarios WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($row = $result->fetch_assoc()) {
-        if (password_verify($senha, $row['senha'])) {
-            if ($row['status'] == 'pendente') {
-                echo "Aguardando aprovação.";
-            } else {
-                echo "success";
-            }
-        } else {
-            echo "Senha incorreta.";
-        }
-    } else {
-        echo "Usuário não encontrado.";
-    }
-}
-
-if ($action == "getPendingUsers") {
-    $sql = "SELECT id_usuario, nome, email FROM usuarios WHERE status = 'pendente'";
+// Função para buscar usuários pendentes
+function buscarUsuariosPendentes($conn) {
+    $sql = "SELECT id, nome, email, telefone FROM usuarios WHERE status = 'pendente'";
     $result = $conn->query($sql);
-    $users = [];
-
-    while ($row = $result->fetch_assoc()) {
-        $users[] = $row;
+    $usuarios = [];
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $usuarios[] = $row;
+        }
     }
-
-    echo json_encode($users);
+    return json_encode($usuarios);
 }
 
-if ($action == "approveUser") {
-    $id = $_POST['id'];
-
-    $sql = "UPDATE usuarios SET status = 'ativo' WHERE id_usuario = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
-
-    if ($stmt->execute()) {
-        echo "Usuário aprovado!";
+// Função para atualizar o status do usuário
+function atualizarStatusUsuario($id, $status, $conn) {
+    $sql = "UPDATE usuarios SET status = '$status' WHERE id = $id";
+    if ($conn->query($sql) === TRUE) {
+        return json_encode(["success" => true]);
     } else {
-        echo "Erro ao aprovar usuário.";
+        return json_encode(["success" => false]);
     }
 }
 
-if ($action == "rejectUser") {
-    $id = $_POST['id'];
+// Verificar o tipo de requisição
+$request = json_decode(file_get_contents('php://input'), true);
 
-    $sql = "UPDATE usuarios SET status = 'inativo' WHERE id_usuario = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("i", $id);
-
-    if ($stmt->execute()) {
-        echo "Usuário rejeitado!";
-    } else {
-        echo "Erro ao rejeitar usuário.";
+// Chamar funções de acordo com a ação
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($request['action'])) {
+        switch ($request['action']) {
+            case 'cadastrar':
+                echo cadastro($request['nome'], $request['email'], $request['telefone'], $request['senha'], $conn);
+                break;
+            case 'aprovar':
+            case 'rejeitar':
+                echo atualizarStatusUsuario($request['id'], $request['action'] === 'aprovar' ? 'aprovado' : 'rejeitado', $conn);
+                break;
+            default:
+                echo json_encode(["success" => false, "message" => "Ação desconhecida"]);
+        }
     }
+} else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    echo buscarUsuariosPendentes($conn);
 }
 
-$conn->close();
 ?>
