@@ -1,4 +1,4 @@
-let isLogin = false;
+let isLogin = true;
     document.getElementById('toggleButton').addEventListener('click', function() {
         const formTitle = document.getElementById('formTitle');
         const nameField = document.getElementById('nameField');
@@ -6,20 +6,20 @@ let isLogin = false;
         const submitButton = document.querySelector('button[type="submit"]');
         
         if (isLogin) {
-            formTitle.textContent = "Login";
-            nameField.classList.add('hidden');
-            email.placeholder = "Email / Nome";
-            telefone.classList.add('hidden');
-            submitButton.textContent = "Entrar";
-            this.textContent = "Criar uma conta";
-
-        } else {
             formTitle.textContent = "Registro";
             email.placeholder = "Email";
             nameField.classList.remove('hidden');
             telefone.classList.remove('hidden');
             submitButton.textContent = "Registrar";
             this.textContent = "Já tem uma conta? Faça login";
+
+        } else {
+            formTitle.textContent = "Login";
+            nameField.classList.add('hidden');
+            email.placeholder = "Email / Nome";
+            telefone.classList.add('hidden');
+            submitButton.textContent = "Entrar";
+            this.textContent = "Criar uma conta";
         }
         isLogin = !isLogin;
     });
