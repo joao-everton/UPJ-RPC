@@ -1,7 +1,7 @@
 <?php
     $db_server = "localhost:3306";
     $db_user = "root";
-    $db_pass = "bruno070601";
+    $db_pass = "";
     $db_name = "upj_db";
 
     // Conectar ao banco de dados
