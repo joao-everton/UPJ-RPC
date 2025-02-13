@@ -10,7 +10,7 @@ if ($action == "register") {
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
     
     $sql = "INSERT INTO usuarios (funcao, nome, email, telefone, senha, praça, status) 
-            VALUES ('visualizador', ?, ?, ?, ?, 'curitiba', 'pendente')";
+            VALUES (DEFAULT, ?, ?, ?, ?, 'Curitiba', DEFAULT)";
     
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssss", $nome, $email, $telefone, $senha);
