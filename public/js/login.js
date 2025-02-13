@@ -26,7 +26,7 @@ let isLogin = true;
 
     if (!isLogin) { 
         // Função para enviar os dados via AJAX
-        document.getElementById('Form').addEventListener('submit', function(e) {
+        document.getElementById('submit').addEventListener('click', function(e) {
         e.preventDefault();  // Evitar o envio normal do formulário
 
         const nome = document.getElementById('nameField').value;
