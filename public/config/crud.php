@@ -1,7 +1,6 @@
 <?php
     include "public/config/config.php";
-    
-    $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
