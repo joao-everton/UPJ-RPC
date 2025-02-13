@@ -24,34 +24,23 @@ let isLogin = true;
         isLogin = !isLogin;
     });
 
-    if (isLogin) {
+    if (!isLogin) { 
         function cadastrar() {
-        const nome = document.getElementById('formTitle').value;
-        const email = document.getElementById('email').value;
-        const senha = document.getElementById('senha').value;
-
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "public/config/crud.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onload = function () {
-            alert(xhr.responseText);
-        };
-        xhr.send(`nome=${nome}&email=${email}&senha=${senha}`);
-        }
-    }
-    else { 
-        function login() {
-            const email = document.getElementById('emailLogin').value;
-            const senha = document.getElementById('senhaLogin').value;
-
+            const nome = document.getElementById('nameField').value;
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            const telefone = document.getElementById('telefone').value;
+            const praça = "Curitiba";  // Exemplo fixo, você pode modificar conforme necessário
+    
             const xhr = new XMLHttpRequest();
             xhr.open("POST", "public/config/crud.php", true);
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onload = function () {
-                alert(xhr.responseText);
+                alert(xhr.responseText);  // Resposta do servidor
             };
-            xhr.send(`email=${email}&senha=${senha}`);
+            xhr.send(`action=register&nome=${nome}&email=${email}&senha=${senha}&telefone=${telefone}&praça=${praça}`);
         }
-
     }
+    
+    
 

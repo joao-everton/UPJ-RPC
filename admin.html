@@ -11,22 +11,54 @@
 
     <script>
         function loadUsers() {
-            $.post("public/config/crud.php", { action: "getPendingUsers" }, function (data) {
-                const users = JSON.parse(data);
-                $("#userList").empty();
-                users.forEach(user => {
-                    $("#userList").append(`<li>${user.nome} (${user.email})
-                        <button onclick="approve(${user.id_usuario})">Aprovar</button>
-                        <button onclick="reject(${user.id_usuario})">Rejeitar</button>
-                    </li>`);
-                });
-            });
+    $.post("public/config/crud.php", { action: "getPendingUsers" }, function (data) {
+        const users = JSON.parse(data);
+        $("#userList").empty();
+        users.forEach(user => {
+            $("#userList").append(`
+                <li>
+                    ${user.nome} (${user.email})
+                    <button onclick="approve(${user.id_usuario})">Aprovar</button>
+                    <button onclick="reject(${user.id_usuario})">Rejeitar</button>
+                </li>
+            `);
+        });
+    });
+}
+
+function approve(id) {
+    $.ajax({
+        url: "public/config/crud.php",
+        type: "POST",
+        data: { action: "approveUser", id: id },
+        success: function(response) {
+            alert(response);  // Exibe a resposta do servidor
+            loadUsers();  // Atualiza a lista de usuários após a aprovação
+        },
+        error: function(xhr, status, error) {
+            alert("Erro ao aprovar o usuário: " + error);
         }
+    });
+}
 
-        function approve(id) { $.post("public/config/crud.php", { action: "approveUser", id }, loadUsers); }
-        function reject(id) { $.post("public/config/crud.php", { action: "rejectUser", id }, loadUsers); }
+function reject(id) {
+    $.ajax({
+        url: "public/config/crud.php",
+        type: "POST",
+        data: { action: "rejectUser", id: id },
+        success: function(response) {
+            alert(response);  // Exibe a resposta do servidor
+            loadUsers();  // Atualiza a lista de usuários após a rejeição
+        },
+        error: function(xhr, status, error) {
+            alert("Erro ao rejeitar o usuário: " + error);
+        }
+    });
+}
 
-        loadUsers();
+// Carrega os usuários pendentes ao carregar a página
+loadUsers();
+
     </script>
 </body>
 </html>
