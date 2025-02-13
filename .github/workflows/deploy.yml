@@ -3,15 +3,16 @@ name: Deploy to WAMP
 on:
   push:
     branches:
-      - main  # ou a branch que você deseja monitorar
+      - main
 
 jobs:
   deploy:
-    runs-on: windows-latest  # Serviço de CI no Windows
+    runs-on: windows-latest
     
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Copy files to WAMP directory
-        run: xcopy /E /I ./ C:\wamp64\www\UPJ-RPC
+        run: |
+          cmd /c xcopy /E /I . C:\wamp64\www\UPJ-RPC\
