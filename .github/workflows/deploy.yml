@@ -13,6 +13,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Copy files to WAMP directory
+      - name: Pull latest changes in WAMP directory
         run: |
-          cmd /c xcopy /E /I . C:\wamp64\www\UPJ-RPC\
+          cd C:\wamp64\www\UPJ-RPC\
+          git pull origin main
+          
