@@ -14,7 +14,7 @@ $(document).ready(function () {
         const action = isLogin ? "login" : "register";
         const formData = $(this).serialize() + `&action=${action}`;
 
-        $.post("crud.php", formData, function (response) {
+        $.post("public/config/crud.php", formData, function (response) {
             alert(response);
             if (response === "success") {
                 window.location.href = "admin.html";

@@ -11,7 +11,7 @@
 
     <script>
         function loadUsers() {
-            $.post("crud.php", { action: "getPendingUsers" }, function (data) {
+            $.post("public/config/crud.php", { action: "getPendingUsers" }, function (data) {
                 const users = JSON.parse(data);
                 $("#userList").empty();
                 users.forEach(user => {
@@ -23,8 +23,8 @@
             });
         }
 
-        function approve(id) { $.post("crud.php", { action: "approveUser", id }, loadUsers); }
-        function reject(id) { $.post("crud.php", { action: "rejectUser", id }, loadUsers); }
+        function approve(id) { $.post("public/config/crud.php", { action: "approveUser", id }, loadUsers); }
+        function reject(id) { $.post("public/config/crud.php", { action: "rejectUser", id }, loadUsers); }
 
         loadUsers();
     </script>

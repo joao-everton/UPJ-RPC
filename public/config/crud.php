@@ -1,5 +1,5 @@
 <?php
-include "config.php";
+include "public/config/config.php";
 
 $action = $_POST['action'] ?? '';
 
@@ -10,7 +10,7 @@ if ($action == "register") {
     $senha = password_hash($_POST['senha'], PASSWORD_DEFAULT);
     
     $sql = "INSERT INTO usuarios (funcao, nome, email, telefone, senha, praça, status) 
-            VALUES (DEFAULT, ?, ?, ?, ?, 'Curitiba', DEFAULT)";
+            VALUES ('visualizador', ?, ?, ?, ?, 'curitiba', 'pendente')";
     
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssss", $nome, $email, $telefone, $senha);
