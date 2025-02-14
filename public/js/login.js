@@ -22,11 +22,6 @@ let isLogin = true;
             telefone.classList.add('hidden');
             submitButton.textContent = "Entrar";
             this.textContent = "Criar uma conta";
-        }
-        isLogin = !isLogin;
-    });
-
-        if (!isLogin) { 
             document.getElementById('submitbtn').addEventListener('click', function(e) {
                 e.preventDefault();  // Evitar o envio normal do formulário
         
@@ -65,8 +60,13 @@ let isLogin = true;
                     console.error('Erro:', error);
                 });
             });
+
+
         }
-    
-    
+
+        isLogin = !isLogin;
+    });
+
+       
     
 
