@@ -32,9 +32,9 @@ document.getElementById('toggleButton').addEventListener('click', function() {
 document.getElementById('submitbtn').addEventListener('click', function(e) {
     e.preventDefault();  // Evita o envio normal do formulário
 
-    const nome = document.getElementById('nameField').querySelector('input').value;
+    const nome = document.getElementById('nameField').value;
     const email = document.getElementById('email').value;
-    const telefone = document.getElementById('telefone').querySelector('input').value;
+    const telefone = document.getElementById('telefone').value;
     const senha = document.getElementById('senha').value;
 
     // Log para verificar se as variáveis estão corretas
