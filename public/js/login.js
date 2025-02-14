@@ -34,7 +34,7 @@ document.getElementById('submitbtn').addEventListener('click', function(e) {
 
     const nome = document.getElementById('nameField').value;
     const email = document.getElementById('email').value;
-    const telefone = document.getElementById('telefone').value;
+    const telefone = document.getElementById('Telefone').value;
     const senha = document.getElementById('senha').value;
 
     // Log para verificar se as variáveis estão corretas
