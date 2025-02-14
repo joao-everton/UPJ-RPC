@@ -22,7 +22,7 @@
 
 <script>
     function buscarUsuariosPendentes() {
-        fetch('crud.php')
+        fetch('public/config/crud.php')
             .then(response => response.json())
             .then(data => {
                 const tableBody = document.querySelector('#usuariosTable tbody');
@@ -46,7 +46,7 @@
     }
 
     function aprovarUsuario(id) {
-        fetch('crud.php', {
+        fetch('public/config/crud.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: 'aprovar', id: id })
