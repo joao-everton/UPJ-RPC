@@ -26,7 +26,6 @@ let isLogin = true;
         isLogin = !isLogin;
     });
 
-    if (!isLogin) { 
         if (!isLogin) { 
             document.getElementById('submit').addEventListener('click', function(e) {
                 e.preventDefault();  // Evitar o envio normal do formulário
@@ -67,7 +66,7 @@ let isLogin = true;
                 });
             });
         }
-    }
+    
     
     
 
