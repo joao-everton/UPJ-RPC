@@ -35,7 +35,7 @@ let isLogin = true;
                 const telefone = document.getElementById('telefone').value;
                 const senha = document.getElementById('senha').value;
         
-                fetch('public/config/crud.php', {
+                fetch('crud.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
