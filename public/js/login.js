@@ -27,7 +27,7 @@ let isLogin = true;
     });
 
         if (!isLogin) { 
-            document.getElementById('submit').addEventListener('click', function(e) {
+            document.getElementById('submitbtn').addEventListener('click', function(e) {
                 e.preventDefault();  // Evitar o envio normal do formulário
         
                 const nome = document.getElementById('nameField').value;
