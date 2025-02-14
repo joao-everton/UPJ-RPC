@@ -10,8 +10,7 @@ try {
 
     // Se houver erro, o próprio MySQLi lançará uma exceção no PHP 8+
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
-    echo "Conectado com sucesso";
+    
 } catch (Throwable $e) {
     die("Erro na conexão: " . $e->getMessage());
 }
