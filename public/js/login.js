@@ -27,7 +27,7 @@ let isLogin = true;
 
     if (!isLogin) { 
         if (!isLogin) { 
-            document.getElementById('submit').addEventListener('click', function(e) {
+            document.getElementById('form').addEventListener('submit', function(e) {
                 e.preventDefault();  // Evitar o envio normal do formulário
         
                 const nome = document.getElementById('nameField').value;
@@ -46,8 +46,11 @@ let isLogin = true;
                         $email: email,
                         $telefone: telefone,
                         $senha: senha,
+                        
                     })
                 })
+                console.log($action, $nome, $email, $telefone, $senha);
+
                 .then(response => response.json())
                 .then(data => {
                     if (data.success) {

@@ -2,6 +2,17 @@
 include "config.php";
 
 // Função de cadastro
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $request = json_decode(file_get_contents('php://input'), true);
+    if (isset($request['action'])) {
+        switch ($request['action']) {
+            case 'cadastrar':
+                echo cadastro($request['nome'], $request['email'], $request['telefone'], $request['senha'], $conn);
+                break;
+            // outros casos...
+        }
+    }
+}
 
 function cadastro($nome, $email, $telefone, $senha, $conn) {
     $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
