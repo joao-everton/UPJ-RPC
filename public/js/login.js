@@ -28,7 +28,7 @@ let isLogin = true;
 
     if (!isLogin) { 
         if (!isLogin) { 
-            document.getElementById('form').addEventListener('submit', function(e) {
+            document.getElementById('submit').addEventListener('click', function(e) {
                 e.preventDefault();  // Evitar o envio normal do formulário
         
                 const nome = document.getElementById('nameField').value;
