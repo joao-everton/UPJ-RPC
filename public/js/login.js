@@ -55,6 +55,7 @@ document.getElementById('submitbtn').addEventListener('click', function(e) {
     })
     .then(response => response.json())
     .then(data => {
+        console.log(data);
         if (data.success) {
             alert('Requisição de cadastro enviada');
             document.getElementById('Form').reset();

@@ -5,14 +5,17 @@ include "config.php";
 
 
 function cadastro($nome, $email, $telefone, $senha, $conn) {
-    $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
-    $sql = "INSERT INTO usuarios (nome, email, telefone, senha) VALUES ($nome, $email, $telefone, $senhaHash)";
-    if ($conn->query($sql) === TRUE) {
+    try {
+        $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
+        $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, telefone, senha) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $nome, $email, $telefone, $senhaHash);
+        $stmt->execute();
         return json_encode(["success" => true]);
-    } else {
-        return json_encode(["success" => false, "error" => $conn->error]); // Adicione isso
+    } catch (Throwable $e) {
+        return json_encode(["success" => false, "error" => $e->getMessage()]);
     }
 }
+
 // Função para buscar usuários pendentes
 function buscarUsuariosPendentes($conn) {
     $sql = "SELECT id, nome, email, telefone FROM usuarios WHERE status = 'pendente'";
@@ -41,27 +44,31 @@ $request = json_decode(file_get_contents('php://input'), true);
 
 // Chamar funções de acordo com a ação
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    header('Content-Type: application/json'); // Garante que o retorno seja JSON
     $request = json_decode(file_get_contents('php://input'), true);
+
     if (isset($request['action'])) {
         switch ($request['action']) {
             case 'cadastrar':
                 echo cadastro($request['nome'], $request['email'], $request['telefone'], $request['senha'], $conn);
                 break;
-            // outros casos...
+
+            case 'buscarPendentes':
+                echo buscarUsuariosPendentes($conn);
+                break;
+
+            case 'atualizarStatus':
+                echo atualizarStatusUsuario($request['id'], $request['status'], $conn);
+                break;
+
+            default:
+                echo json_encode(["success" => false, "error" => "Ação inválida"]);
         }
+    } else {
+        echo json_encode(["success" => false, "error" => "Nenhuma ação especificada"]);
     }
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $request = json_decode(file_get_contents('php://input'), true);
-    if (isset($request['action'])) {
-        switch ($request['action']) {
-            case 'cadastrar':
-                echo cadastro($request['nome'], $request['email'], $request['telefone'], $request['senha'], $conn);
-                
-                break;
-            // outros casos...
-        }
-    }
-}
+
+
 ?>
