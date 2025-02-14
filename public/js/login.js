@@ -3,7 +3,7 @@ let isLogin = true;
         const formTitle = document.getElementById('formTitle');
         const nameField = document.getElementById('nameField');
         const email = document.getElementById('email');
-        const submitButton = document.querySelector('button[type="submit"]');
+        const submitButton = document.querySelector('button[type="button"]');
         const telefone = document.getElementById('telefone');
         
         if (isLogin) {
