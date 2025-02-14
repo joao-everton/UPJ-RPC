@@ -1,16 +1,18 @@
 <?php
-    $db_server = "localhost";
-    $db_user = "root";
-    $db_pass = "";
-    $db_name = "upj_db";
+$db_server = "localhost";
+$db_user = "root";
+$db_pass = "";
+$db_name = "upj_db";
 
-    // Conectar ao banco de dados
-    $conn = mysqli_connect($db_server, $db_user, $db_pass, $db_name);
+try {
+    // Tenta conectar ao banco de dados
+    $conn = new mysqli($db_server, $db_user, $db_pass, $db_name);
 
-    // Verificar se a conexão foi bem-sucedida
-    if (!$conn) {
-        die("Erro na conexão: " . mysqli_connect_error());
-    }
+    // Se houver erro, o próprio MySQLi lançará uma exceção no PHP 8+
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
     echo "Conectado com sucesso";
+} catch (Throwable $e) {
+    die("Erro na conexão: " . $e->getMessage());
+}
 ?>
