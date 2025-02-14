@@ -2,9 +2,10 @@
 include "public/config/config.php";
 
 // Função de cadastro
+
 function cadastro($nome, $email, $telefone, $senha, $conn) {
     $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
-    $sql = "INSERT INTO usuarios (nome, email, telefone, senha, praça) VALUES ($nome, $email, $telefone, $senhaHash)";
+    $sql = "INSERT INTO usuarios (nome, email, telefone, senha) VALUES ($nome, $email, $telefone, $senhaHash)";
     if ($conn->query($sql) === TRUE) {
         return json_encode(["success" => true]);
     } else {

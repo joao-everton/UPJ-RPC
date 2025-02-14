@@ -4,6 +4,7 @@ let isLogin = true;
         const nameField = document.getElementById('nameField');
         const email = document.getElementById('email');
         const submitButton = document.querySelector('button[type="submit"]');
+        const telefone = document.getElementById('telefone');
         
         if (isLogin) {
             formTitle.textContent = "Registro";
