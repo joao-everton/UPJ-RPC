@@ -9,7 +9,7 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
     if ($conn->query($sql) === TRUE) {
         return json_encode(["success" => true]);
     } else {
-        return json_encode(["success" => false]);
+        return json_encode(["success" => false, "error" => $conn->error]); // Adicione isso
     }
 }
 // Função para buscar usuários pendentes
@@ -40,21 +40,15 @@ $request = json_decode(file_get_contents('php://input'), true);
 
 // Chamar funções de acordo com a ação
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $request = json_decode(file_get_contents('php://input'), true);
     if (isset($request['action'])) {
         switch ($request['action']) {
             case 'cadastrar':
                 echo cadastro($request['nome'], $request['email'], $request['telefone'], $request['senha'], $conn);
                 break;
-            case 'aprovar':
-            case 'rejeitar':
-                echo atualizarStatusUsuario($request['id'], $request['action'] === 'aprovar' ? 'aprovado' : 'rejeitado', $conn);
-                break;
-            default:
-                echo json_encode(["success" => false, "message" => "Ação desconhecida"]);
+            // outros casos...
         }
     }
-} else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    echo buscarUsuariosPendentes($conn);
 }
 
 ?>

@@ -26,41 +26,42 @@ let isLogin = true;
     });
 
     if (!isLogin) { 
-        // Função para enviar os dados via AJAX
-        document.getElementById('submit').addEventListener('click', function(e) {
-        e.preventDefault();  // Evitar o envio normal do formulário
-
-        const nome = document.getElementById('nameField').value;
-        const email = document.getElementById('email').value;
-        const telefone = document.getElementById('telefone').value;
-        const senha = document.getElementById('senha').value;
-
-        fetch('public/config/crud.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                nome: nome,
-                email: email,
-                telefone: telefone,
-                senha: senha,
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Requisição de cadastro enviada');
-                // Limpar campos
-                document.getElementById('Form').reset();
-            } else {
-                alert('Erro ao cadastrar.');
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-        });
-    });
+        if (!isLogin) { 
+            document.getElementById('submit').addEventListener('click', function(e) {
+                e.preventDefault();  // Evitar o envio normal do formulário
+        
+                const nome = document.getElementById('nameField').value;
+                const email = document.getElementById('email').value;
+                const telefone = document.getElementById('telefone').value;
+                const senha = document.getElementById('senha').value;
+        
+                fetch('public/config/crud.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'cadastrar', // Adicione a ação de cadastro
+                        nome: nome,
+                        email: email,
+                        telefone: telefone,
+                        senha: senha,
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Requisição de cadastro enviada');
+                        document.getElementById('Form').reset();
+                    } else {
+                        alert('Erro ao cadastrar.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro:', error);
+                });
+            });
+        }
     }
     
     
