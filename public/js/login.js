@@ -35,6 +35,7 @@ let isLogin = true;
                 const email = document.getElementById('email').value;
                 const telefone = document.getElementById('telefone').value;
                 const senha = document.getElementById('senha').value;
+                console.log('ate aqui ok 2')
         
                 fetch('crud.php', {
                     method: 'POST',
