@@ -13,6 +13,7 @@ let isLogin = true;
             telefone.classList.remove('hidden');
             submitButton.textContent = "Registrar";
             this.textContent = "Já tem uma conta? Faça login";
+            console.log('até aqui ok')
 
         } else {
             formTitle.textContent = "Login";
