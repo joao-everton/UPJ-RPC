@@ -40,7 +40,7 @@ document.getElementById('submitbtn').addEventListener('click', function(e) {
     // Log para verificar se as variáveis estão corretas
     console.log('Nome:', nome, 'Email:', email, 'Telefone:', telefone, 'Senha:', senha);
 
-    fetch('crud.php', {
+    fetch('public/config/crud.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
