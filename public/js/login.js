@@ -49,7 +49,7 @@ let isLogin = true;
                         
                     })
                 })
-                console.log($action, $nome, $email, $telefone, $senha);
+                console.log($action, $nome, $email, $telefone, $senha)
 
                 .then(response => response.json())
                 .then(data => {
