@@ -1,5 +1,5 @@
 <?php
-include "public/config/config.php";
+include "config.php";
 
 // Função de cadastro
 
