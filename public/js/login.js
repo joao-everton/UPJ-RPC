@@ -41,11 +41,11 @@ let isLogin = true;
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        action: 'cadastrar', // Adicione a ação de cadastro
-                        nome: nome,
-                        email: email,
-                        telefone: telefone,
-                        senha: senha,
+                        $action: 'cadastrar', // Adicione a ação de cadastro
+                        $nome: nome,
+                        $email: email,
+                        $telefone: telefone,
+                        $senha: senha,
                     })
                 })
                 .then(response => response.json())

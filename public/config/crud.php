@@ -8,6 +8,7 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
     $sql = "INSERT INTO usuarios (nome, email, telefone, senha) VALUES ($nome, $email, $telefone, $senhaHash)";
     if ($conn->query($sql) === TRUE) {
         return json_encode(["success" => true]);
+        echo "Conexão OK";
     } else {
         return json_encode(["success" => false, "error" => $conn->error]); // Adicione isso
     }
