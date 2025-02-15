@@ -15,7 +15,7 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
             return json_encode(["success" => false, "error" => "E-mail já cadastrado"]);
         }
         $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, telefone, senha) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssis", $nome, $email, $telefone, $senhaHash);
+        $stmt->bind_param("ssss", $nome, $email, $telefone, $senhaHash);
         $stmt->execute();
         return json_encode(["success" => true]);
         
