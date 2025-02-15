@@ -37,6 +37,11 @@ document.getElementById('submitbtn').addEventListener('click', function(e) {
     const telefone = document.getElementById('telefone').value.trim();
     const senha = document.getElementById('senha').value;
 
+    if (!email.includes('@')) {
+        alert("Por favor, insira um email válido com '@'.");
+        return;
+    }
+
     // Log para verificar se as variáveis estão corretas
     console.log('Nome:', nome, 'Email:', email, 'Telefone:', telefone, 'Senha:', senha);
 
