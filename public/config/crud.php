@@ -7,8 +7,12 @@ include "config.php";
 function cadastro($nome, $email, $telefone, $senha, $conn) {
     try {
         $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
+        $stmt = $conn->prepare("SELECT id FROM usuarios WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        if ($stmt->num_rows > 0)
         $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, telefone, senha) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssss", $nome, $email, $telefone, $senhaHash);
+        $stmt->bind_param("ssis", $nome, $email, $telefone, $senhaHash);
         $stmt->execute();
         return json_encode(["success" => true]);
     } catch (Throwable $e) {
