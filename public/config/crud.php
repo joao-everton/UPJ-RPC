@@ -17,6 +17,11 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
             return json_encode(["success" => false, "error" => "E-mail já cadastrado"]);
         }
         $stmt->close();
+        
+        // Validação do email no PHP
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return json_encode(["success" => false, "error" => "Email inválido"]);
+}
 
         // Converter telefone para inteiro (se for INT no banco)
         $telefoneInt = (int) preg_replace('/\D/', '', $telefone); // Remove caracteres não numéricos
