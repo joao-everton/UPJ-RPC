@@ -60,7 +60,7 @@ document.getElementById('submitbtn').addEventListener('click', function(e) {
             alert('Requisição de cadastro enviada');
             document.getElementById('Form').reset();
         } else {
-            alert('Erro ao cadastrar.');
+            alert('Usuario já cadastrado');
         }
     })
     .catch(error => {
