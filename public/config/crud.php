@@ -7,7 +7,7 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
         $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
 
         // Verificar se o e-mail já existe
-        $stmt = $conn->prepare("SELECT id FROM usuarios WHERE email = ?");
+        $stmt = $conn->prepare("SELECT id_usuario FROM usuarios WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $stmt->store_result(); // Necessário para usar num_rows
