@@ -7,7 +7,7 @@ include "config.php";
 function cadastro($nome, $email, $telefone, $senha, $conn) {
     try {
         $senhaHash = password_hash($senha, PASSWORD_BCRYPT);
-        $stmt = $conn->prepare("SELECT nome FROM usuarios WHERE email = ?");
+        $stmt = $conn->prepare("SELECT * FROM usuarios WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute();
         if ($stmt->num_rows > 0) {
