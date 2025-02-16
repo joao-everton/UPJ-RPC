@@ -45,41 +45,49 @@ document.getElementById('submitbtn').addEventListener('click', function(e) {
     // Log para verificar se as variáveis estão corretas
     console.log('Nome:', nome, 'Email:', email, 'Telefone:', telefone, 'Senha:', senha);
 
-    fetch('public/config/crud.php', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            action: isLogin ? 'login' : 'cadastrar',  // Ajuste baseado no estado
-            nome: nome,
-            email: email,
-            telefone: telefone,
-            senha: senha,
+        fetch('public/config/crud.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                action: isLogin ? 'login' : 'cadastrar',  // Ajuste baseado no estado
+                nome: nome,
+                email: email,
+                telefone: telefone,
+                senha: senha,
+            })
         })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data);
-        if (data.success) {
-            // Função para abrir o modal
-            function OpenModal() {
-                const modal_cadastro_enviado = document.getElementById('modal_cadastro_enviado');
-                if (modal_cadastro_enviado) {
-                    modal_cadastro_enviado.classList.remove('hidden'); // Exibe o modal
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            if (data.success) {
+                function OpenModal() {
+                    const modal = document.getElementById('modal_cadastro_enviado');
+                    if (modal) {
+                        modal.classList.remove('hidden'); // Exibe o modal
+                    }
                 }
+    
+                // Função para fechar o modal
+                function CloseModal() {
+                    const modal = document.getElementById('modal_cadastro_enviado');
+                    if (modal) {
+                        modal.classList.add('hidden'); // Esconde o modal
+                    }
+                }
+    
+                // Adiciona evento de clique ao botão de fechar
+                document.getElementById('fechar-modal').addEventListener('click', CloseModal);
+    
+                OpenModal(); // Chama a função para abrir o modal
+                document.getElementById('Form').reset();
+                
+            } else {
+                alert('Usuario já cadastrado');
             }
-
-            // Adiciona evento de clique ao botão de fechar
-            document.getElementById('fechar-modal').addEventListener('click', CloseModal);
-
-            OpenModal(); // Chama a função para abrir o modal
-            document.getElementById('Form').reset();
-            
-        } else {
-            alert('Usuário já cadastrado');
-        }
-    })
-    .catch(error => {
-        console.error('Erro:', error);
+        })
+        .catch(error => {
+            console.error('Erro:', error);
+        });
     });
