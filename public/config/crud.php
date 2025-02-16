@@ -12,27 +12,23 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
         $stmt->execute();
         $stmt->store_result(); // Necessário para usar num_rows
 
-        if ($stmt->num_rows > 0) {
-            $stmt->close(); // Fecha antes de continuar
-            return json_encode(["success" => false, "error" => "E-mail já cadastrado"]);
-        }
-        $stmt->close();
-        
-        // Validação do email no PHP
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        return json_encode(["success" => false, "error" => "Email inválido"]);  
-        }
+       if ($stmt->num_rows > 0) {
+           $stmt->close(); // Fecha antes de continuar
+           return json_encode(["success" => false, "error" => "E-mail já cadastrado"]);
+       }
+       $stmt->close();
 
-        // Converter telefone para inteiro (se for INT no banco)
-        $telefoneInt = (int) preg_replace('/\D/', '', $telefone); // Remove caracteres não numéricos
+       // Converter telefone para inteiro (se for INT no banco)
+       $telefoneInt = (int) preg_replace('/\D/', '', $telefone); // Remove caracteres não numéricos
 
-        // Inserir novo usuário
-        $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, telefone, senha) VALUES (?, ?, ?, ?)");
-        $stmt->bind_param("ssis", $nome, $email, $telefoneInt, $senhaHash);
-        $stmt->execute();
-        $stmt->close();
+       // Inserir novo usuário
+       $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, telefone, senha) VALUES (?, ?, ?, ?)");
+       $stmt->bind_param("ssis", $nome, $email, $telefoneInt, $senhaHash);
+       $stmt->execute();
+       $stmt->close();
 
-        return json_encode(["success" => true]);
+       return json_encode(["success" => true]);
+       
         
     } catch (Throwable $e) {
         return json_encode(["success" => false, "error" => $e->getMessage()]);
