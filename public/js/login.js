@@ -62,13 +62,24 @@ document.getElementById('submitbtn').addEventListener('click', function(e) {
     .then(data => {
         console.log(data);
         if (data.success) {
-            alert('Requisição de cadastro enviada');
+            // Função para abrir o modal
+            function OpenModal() {
+                const modal_cadastro_enviado = document.getElementById('modal_cadastro_enviado');
+                if (modal_cadastro_enviado) {
+                    modal_cadastro_enviado.classList.remove('hidden'); // Exibe o modal
+                }
+            }
+
+            // Adiciona evento de clique ao botão de fechar
+            document.getElementById('fechar-modal').addEventListener('click', CloseModal);
+
+            OpenModal(); // Chama a função para abrir o modal
             document.getElementById('Form').reset();
+            
         } else {
-            alert('Usuario já cadastrado');
+            alert('Usuário já cadastrado');
         }
     })
     .catch(error => {
         console.error('Erro:', error);
     });
-});
