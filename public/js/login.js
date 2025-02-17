@@ -26,6 +26,10 @@ document.getElementById('toggleButton').addEventListener('click', function() {
     isLogin = !isLogin;
 });
 
+
+
+
+
 // Funções para abrir e fechar o modal
 function abrirModal() {
     const modal = document.getElementById("modal_cadastro_enviado");
@@ -41,9 +45,12 @@ function abrirModal() {
 function fecharModal() {
     const modal = document.getElementById("modal_cadastro_enviado");
     const backdrop = document.getElementById("backdrop");
+    const modal_email = document.getElementById('modal_email_invalido');
 
     modal.classList.remove("scale-100");
     modal.classList.add("scale-0");
+    modal_email.classList.remove("scale-100");
+    modal_email.classList.add("scale-0");
     backdrop.classList.remove("opacity-100");
 
     setTimeout(() => {
@@ -53,6 +60,22 @@ function fecharModal() {
 
 // Adiciona evento para fechar o modal
 document.getElementById("fechar-modal").addEventListener("click", fecharModal);
+
+function email_invalido() {
+    const modal_email = document.getElementById('modal_email_invalido');
+    const backdrop = document.getElementById("backdrop");
+
+    modal.classList.remove("scale-0");
+    modal.classList.add("scale-100");
+    backdrop.classList.remove("hidden");
+    backdrop.classList.add("opacity-100");
+    
+}
+
+
+
+
+
 
 // Ouvinte de evento para envio do formulário
 document.getElementById('submitbtn').addEventListener('click', function(e) {
@@ -64,7 +87,7 @@ document.getElementById('submitbtn').addEventListener('click', function(e) {
     const senha = document.getElementById('senha').value.trim();
 
     if (!email.includes('@')) {
-        alert("Por favor, insira um email válido com '@'.");
+        email_invalido();
         return;
     }
 
