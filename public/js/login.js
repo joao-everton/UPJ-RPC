@@ -14,7 +14,6 @@ document.getElementById('toggleButton').addEventListener('click', function() {
         telefone.classList.remove('hidden');
         submitButton.textContent = "Registrar";
         this.textContent = "Já tem uma conta? Faça login";
-        console.log('Mudou para Registro');
     } else {
         formTitle.textContent = "Login";
         nameField.classList.add('hidden');
@@ -22,73 +21,77 @@ document.getElementById('toggleButton').addEventListener('click', function() {
         telefone.classList.add('hidden');
         submitButton.textContent = "Entrar";
         this.textContent = "Criar uma conta";
-        console.log('Mudou para Login');
     }
 
     isLogin = !isLogin;
 });
 
-// Adiciona o ouvinte de eventos para o botão de submit
-document.getElementById('submitbtn').addEventListener('click', function(e) {
-    e.preventDefault();  // Evita o envio normal do formulário
+// Funções para abrir e fechar o modal
+function abrirModal() {
+    const modal = document.getElementById("modal_cadastro_enviado");
+    const backdrop = document.getElementById("backdrop");
 
-    const nome = document.getElementById('nameField').value;
-    const email = document.getElementById('email').value;
+    modal.classList.remove("scale-0");
+    modal.classList.add("scale-100");
+    backdrop.classList.remove("hidden");
+    backdrop.classList.add("opacity-100");
+}
+
+function fecharModal() {
+    const modal = document.getElementById("modal_cadastro_enviado");
+    const backdrop = document.getElementById("backdrop");
+
+    modal.classList.remove("scale-100");
+    modal.classList.add("scale-0");
+    backdrop.classList.remove("opacity-100");
+
+    setTimeout(() => {
+        backdrop.classList.add("hidden");
+    }, 300); // Aguarda a animação antes de esconder
+}
+
+// Adiciona evento para fechar o modal
+document.getElementById("fechar-modal").addEventListener("click", fecharModal);
+
+// Ouvinte de evento para envio do formulário
+document.getElementById('submitbtn').addEventListener('click', function(e) {
+    e.preventDefault();
+
+    const nome = document.getElementById('nameField').value.trim();
+    const email = document.getElementById('email').value.trim();
     const telefone = document.getElementById('telefone').value.trim();
-    const senha = document.getElementById('senha').value;
+    const senha = document.getElementById('senha').value.trim();
 
     if (!email.includes('@')) {
         alert("Por favor, insira um email válido com '@'.");
         return;
     }
 
-    // Log para verificar se as variáveis estão corretas
-    console.log('Nome:', nome, 'Email:', email, 'Telefone:', telefone, 'Senha:', senha);
-
-        fetch('public/config/crud.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                action: isLogin ? 'login' : 'cadastrar',  // Ajuste baseado no estado
-                nome: nome,
-                email: email,
-                telefone: telefone,
-                senha: senha,
-            })
+    fetch('public/config/crud.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            action: isLogin ? 'login' : 'cadastrar',
+            nome: nome,
+            email: email,
+            telefone: telefone,
+            senha: senha
         })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if (data.success) {
-                const modal = document.getElementById("modal_cadastro_enviado");
-                const backdrop = document.getElementById("backdrop");
-                const btnFechar = document.getElementById("fechar-modal");
-
-                function abrirModal() {
-                    modal.classList.remove("scale-0");
-                    modal.classList.add("scale-100");
-                    backdrop.classList.remove("hidden");
-                    backdrop.classList.add("opacity-100");
-                }
-
-                function fecharModal() {
-                    modal.classList.remove("scale-100");
-                    modal.classList.add("scale-0");
-                    backdrop.classList.add("hidden");
-                }
-
-                btnFechar.addEventListener("click", fecharModal);
-
-                abrirModal(); // Chama a função para abrir o modal
-                document.getElementById('Form').reset();
-                
-            } else {
-                alert('Usuario já cadastrado');
-            }
-        })
-        .catch(error => {
-            console.error('Erro:', error);
-        });
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        if (data.success) {
+            abrirModal(); // Mostra o modal de sucesso
+            document.getElementById('Form').reset();
+        } else {
+            alert('Usuário já cadastrado ou erro no login.');
+        }
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        alert('Erro na requisição. Verifique o console.');
     });
+});
