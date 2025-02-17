@@ -56,10 +56,22 @@ function email_invalido() {
 function fecharModal() {
     const modal = document.getElementById("modal_cadastro_enviado");
     const backdrop = document.getElementById("backdrop");
-    const modal_email = document.getElementById('modal_email_invalido');
+    
 
     modal.classList.remove("scale-100");
     modal.classList.add("scale-0");
+    backdrop.classList.remove("opacity-100");
+
+    setTimeout(() => {
+        backdrop.classList.add("hidden");
+    }, 300); // Aguarda a animação antes de esconder
+}
+
+function fecharModalEmail() {
+    const modal_email = document.getElementById('modal_email_invalido');
+    const backdrop = document.getElementById("backdrop");
+    
+
     modal_email.classList.remove("scale-100");
     modal_email.classList.add("scale-0");
     backdrop.classList.remove("opacity-100");
@@ -70,7 +82,8 @@ function fecharModal() {
 }
 
 // Adiciona evento para fechar o modal
-document.getElementById("fechar-modal").addEventListener("click", fecharModal);
+document.getElementById("fechar-modal-enviado").addEventListener("click", fecharModal);
+document.getElementById("fechar-modal-email").addEventListener("click", fecharModalEmail);
 
 
 
