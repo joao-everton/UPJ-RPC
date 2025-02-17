@@ -36,6 +36,10 @@ function abrirModal() {
     modal.classList.add("scale-100");
     backdrop.classList.remove("hidden");
     backdrop.classList.add("opacity-100");
+
+    setTimeout(() => {
+        modal.classList.remove("animate-bounce");
+    }, 300);
 }
 
 function fecharModal() {
