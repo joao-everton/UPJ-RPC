@@ -62,29 +62,26 @@ document.getElementById('submitbtn').addEventListener('click', function(e) {
         .then(data => {
             console.log(data);
             if (data.success) {
-                function OpenModal() {
-                    const modal = document.getElementById('modal_cadastro_enviado');
-                    const body = document.getElementById('body');
-                    if (modal) {
-                        modal.classList.remove('hidden'); // Exibe o modal
-                        body.classList.add('opacity-60');
-                    }
+                const modal = document.getElementById("modal_cadastro_enviado");
+                const backdrop = document.getElementById("backdrop");
+                const btnFechar = document.getElementById("fechar-modal");
+
+                function abrirModal() {
+                    modal.classList.remove("scale-0");
+                    modal.classList.add("scale-100");
+                    backdrop.classList.remove("hidden");
+                    backdrop.classList.add("opacity-100");
                 }
-    
-                // Função para fechar o modal
-                function CloseModal() {
-                    const body = document.getElementById('body');
-                    const modal = document.getElementById('modal_cadastro_enviado');
-                    if (modal) {
-                        modal.classList.add('hidden'); // Esconde o modal
-                        body.classList.remove('opacity-60');
-                    }
+
+                function fecharModal() {
+                    modal.classList.remove("scale-100");
+                    modal.classList.add("scale-0");
+                    backdrop.classList.add("hidden");
                 }
-    
-                // Adiciona evento de clique ao botão de fechar
-                document.getElementById('fechar-modal').addEventListener('click', CloseModal);
-    
-                OpenModal(); // Chama a função para abrir o modal
+
+                btnFechar.addEventListener("click", fecharModal);
+
+                abrirModal(); // Chama a função para abrir o modal
                 document.getElementById('Form').reset();
                 
             } else {
