@@ -63,24 +63,25 @@ document.getElementById('submitbtn').addEventListener('click', function(e) {
             console.log(data);
             if (data.success) {
                 function OpenModal() {
-                    const modal = document.getElementById('modal_cadastro_enviado');
-                    modal.classList.remove('hidden');
-                    modal.classList.add('opacity-100');
-                    modal.querySelector('div').classList.remove('scale-90');
-                    modal.querySelector('div').classList.add('scale-100');
-                }
-        
-                function CloseModal() {
-                    const modal = document.getElementById('modal_cadastro_enviado');
-                    modal.classList.add('hidden');
-                    modal.classList.remove('opacity-100');
-                    modal.querySelector('div').classList.add('scale-90');
-                    modal.querySelector('div').classList.remove('scale-100');
-                }
-        
-                document.getElementById('fechar-modal').addEventListener('click', CloseModal);
+            const modal = document.getElementById('modal_cadastro_enviado');
+            modal.classList.remove('hidden');
+            modal.classList.add('opacity-100');
+            modal.querySelector('div').classList.remove('scale-90');
+            modal.querySelector('div').classList.add('scale-100');
+            }
+
+            function CloseModal() {
+                const modal = document.getElementById('modal_cadastro_enviado');
+                modal.classList.add('hidden');
+                modal.classList.remove('opacity-100');
+                modal.querySelector('div').classList.add('scale-90');
+                modal.querySelector('div').classList.remove('scale-100');
+            }
+
+            document.getElementById('fechar-modal').addEventListener('click', CloseModal);
     
-                document.getElementById('Form').reset();
+            OpenModal(); // Chama a função para abrir o modal
+            document.getElementById('Form').reset();
                 
             } else {
                 alert('Usuario já cadastrado');
