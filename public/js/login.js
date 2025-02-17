@@ -64,16 +64,20 @@ document.getElementById('submitbtn').addEventListener('click', function(e) {
             if (data.success) {
                 function OpenModal() {
                     const modal = document.getElementById('modal_cadastro_enviado');
+                    const body = document.getElementById('body');
                     if (modal) {
                         modal.classList.remove('hidden'); // Exibe o modal
+                        body.classList.add('backdrop-opacity-60');
                     }
                 }
     
                 // Função para fechar o modal
                 function CloseModal() {
+                    const body = document.getElementById('body');
                     const modal = document.getElementById('modal_cadastro_enviado');
                     if (modal) {
                         modal.classList.add('hidden'); // Esconde o modal
+                        body.classList.remove('backdrop-opacity-60');
                     }
                 }
     
