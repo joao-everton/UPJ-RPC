@@ -65,8 +65,8 @@ function email_invalido() {
     const modal_email = document.getElementById('modal_email_invalido');
     const backdrop = document.getElementById("backdrop");
 
-    modal.classList.remove("scale-0");
-    modal.classList.add("scale-100");
+    modal_email.classList.remove("scale-0");
+    modal_email.classList.add("scale-100");
     backdrop.classList.remove("hidden");
     backdrop.classList.add("opacity-100");
     
