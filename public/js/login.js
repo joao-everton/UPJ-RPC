@@ -42,6 +42,17 @@ function abrirModal() {
 
 }
 
+function email_invalido() {
+    const modal_email = document.getElementById('modal_email_invalido');
+    const backdrop = document.getElementById("backdrop");
+
+    modal_email.classList.remove("scale-0");
+    modal_email.classList.add("scale-100");
+    backdrop.classList.remove("hidden");
+    backdrop.classList.add("opacity-100");
+    
+}
+
 function fecharModal() {
     const modal = document.getElementById("modal_cadastro_enviado");
     const backdrop = document.getElementById("backdrop");
@@ -61,16 +72,7 @@ function fecharModal() {
 // Adiciona evento para fechar o modal
 document.getElementById("fechar-modal").addEventListener("click", fecharModal);
 
-function email_invalido() {
-    const modal_email = document.getElementById('modal_email_invalido');
-    const backdrop = document.getElementById("backdrop");
 
-    modal_email.classList.remove("scale-0");
-    modal_email.classList.add("scale-100");
-    backdrop.classList.remove("hidden");
-    backdrop.classList.add("opacity-100");
-    
-}
 
 
 
