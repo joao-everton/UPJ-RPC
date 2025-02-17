@@ -350,6 +350,7 @@
     --animate-ping: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
     --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     --animate-bounce: bounce 1s infinite;
+    --animate-bounceRealista: bounceRealista 3s infinite;
     --blur-xs: 4px;
     --blur-sm: 8px;
     --blur-md: 12px;
@@ -2175,14 +2176,15 @@
 }
 @keyframes bounceRealista {
   0%   { transform: translateY(0); }
-  20%  { transform: translateY(-30px); } /* Salto inicial mais alto */
+  20%  { transform: translateY(-30%); } /* Salto inicial mais alto */
   40%  { transform: translateY(0); }
-  55%  { transform: translateY(-20px); } /* Segundo salto menor */
+  55%  { transform: translateY(-20%); } /* Segundo salto menor */
   70%  { transform: translateY(0); }
-  80%  { transform: translateY(-10px); } /* Terceiro salto ainda menor */
+  80%  { transform: translateY(-10%); } /* Terceiro salto ainda menor */
   90%  { transform: translateY(0); }
-  95%  { transform: translateY(-5px); }  /* Pequeno ajuste final */
+  95%  { transform: translateY(-5%); }  /* Pequeno ajuste final */
   100% { transform: translateY(0); }
+ 
 }
 @keyframes bounce {
   0%, 100% {
