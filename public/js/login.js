@@ -30,6 +30,7 @@ document.getElementById('toggleButton').addEventListener('click', function() {
 function abrirModal() {
     const modal = document.getElementById("modal_cadastro_enviado");
     const backdrop = document.getElementById("backdrop");
+    const check_imagem = document.getElementById("check_imagem");
 
     modal.classList.remove("scale-0");
     modal.classList.remove("hidden");
@@ -38,8 +39,8 @@ function abrirModal() {
     backdrop.classList.add("opacity-100");
 
     setTimeout(() => {
-        modal.classList.remove("animate-bounce");
-    }, 300);
+        check_imagem.classList.remove("animate-bounce");
+    }, 2500);
 }
 
 function fecharModal() {
