@@ -32,6 +32,7 @@ function abrirModal() {
     const backdrop = document.getElementById("backdrop");
 
     modal.classList.remove("scale-0");
+    modal.classList.remove("hidden");
     modal.classList.add("scale-100");
     backdrop.classList.remove("hidden");
     backdrop.classList.add("opacity-100");
