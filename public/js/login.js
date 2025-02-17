@@ -63,25 +63,29 @@ document.getElementById('submitbtn').addEventListener('click', function(e) {
             console.log(data);
             if (data.success) {
                 function OpenModal() {
-            const modal = document.getElementById('modal_cadastro_enviado');
-            modal.classList.remove('hidden');
-            modal.classList.add('opacity-100');
-            modal.querySelector('div').classList.remove('scale-90');
-            modal.querySelector('div').classList.add('scale-100');
-            }
-
-            function CloseModal() {
-                const modal = document.getElementById('modal_cadastro_enviado');
-                modal.classList.add('hidden');
-                modal.classList.remove('opacity-100');
-                modal.querySelector('div').classList.add('scale-90');
-                modal.querySelector('div').classList.remove('scale-100');
-            }
-
-            document.getElementById('fechar-modal').addEventListener('click', CloseModal);
+                    const modal = document.getElementById('modal_cadastro_enviado');
+                    const body = document.getElementById('body');
+                    if (modal) {
+                        modal.classList.remove('hidden'); // Exibe o modal
+                        body.classList.add('opacity-60');
+                    }
+                }
     
-            OpenModal(); // Chama a função para abrir o modal
-            document.getElementById('Form').reset();
+                // Função para fechar o modal
+                function CloseModal() {
+                    const body = document.getElementById('body');
+                    const modal = document.getElementById('modal_cadastro_enviado');
+                    if (modal) {
+                        modal.classList.add('hidden'); // Esconde o modal
+                        body.classList.remove('opacity-60');
+                    }
+                }
+    
+                // Adiciona evento de clique ao botão de fechar
+                document.getElementById('fechar-modal').addEventListener('click', CloseModal);
+    
+                OpenModal(); // Chama a função para abrir o modal
+                document.getElementById('Form').reset();
                 
             } else {
                 alert('Usuario já cadastrado');
