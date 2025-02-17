@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login / Registro</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes bounceRealista {
+            0%   { transform: translateY(0); }
+            20%  { transform: translateY(-30px); } /* Salto inicial mais alto */
+            40%  { transform: translateY(0); }
+            55%  { transform: translateY(-20px); } /* Segundo salto menor */
+            70%  { transform: translateY(0); }
+            80%  { transform: translateY(-10px); } /* Terceiro salto ainda menor */
+            90%  { transform: translateY(0); }
+            95%  { transform: translateY(-5px); }  /* Pequeno ajuste final */
+            100% { transform: translateY(0); }
+        }
+    </style>
+    
 </head>
 <body id="body" class="flex items-center justify-center min-h-screen bg-blue-300">
     <div class="w-96 p-6 bg-gray-100 shadow-lg rounded-xl">
@@ -29,7 +43,7 @@
         <div class="w-96 rounded-lg bg-gray-100 shadow-lg flex-col">
             <div class="bg-green-500 flex items-center rounded-t-lg justify-center p-4">
                 <div class="rounded-full bg-white h-20 w-20 flex items-center justify-center">
-                    <svg id="check_imagem" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="green" class="size-20 animate-bounce">
+                    <svg id="check_imagem" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="green" class="size-20 animate-[bounceRealista_2s_ease-out]">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>                  
                 </div>  

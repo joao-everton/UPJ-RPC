@@ -38,9 +38,6 @@ function abrirModal() {
     backdrop.classList.remove("hidden");
     backdrop.classList.add("opacity-100");
 
-    setTimeout(() => {
-        check_imagem.classList.remove("animate-bounce");
-    }, 2500);
 }
 
 function fecharModal() {
