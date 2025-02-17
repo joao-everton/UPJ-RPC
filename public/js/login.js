@@ -30,7 +30,6 @@ document.getElementById('toggleButton').addEventListener('click', function() {
 function abrirModal() {
     const modal = document.getElementById("modal_cadastro_enviado");
     const backdrop = document.getElementById("backdrop");
-    const check_imagem = document.getElementById("check_imagem");
 
     modal.classList.remove("scale-0");
     modal.classList.remove("hidden");
