@@ -38,7 +38,7 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
 
 function buscarUsuariosPendentes($conn) {
     try {
-        $stmt = $conn->prepare("SELECT nome, email, telefone, status FROM usuarios WHERE status = 'pendente'");
+        $stmt = $conn->prepare("SELECT id_usuario, nome, email, telefone, status FROM usuarios WHERE status = 'pendente'");
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
 
             case 'atualizarStatus':
-                echo atualizarStatusUsuario($request['id'], $request['status'], $conn);
+                echo atualizarStatusUsuario($request['id_usuario'], $request['status'], $conn);
                 break;
 
             default:
