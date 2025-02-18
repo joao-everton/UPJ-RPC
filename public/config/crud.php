@@ -43,9 +43,9 @@ function buscarUsuariosPendentes($conn) {
 
     while ($row = $result->fetch_assoc()) {
         $usuarios[] = $row;
+        return json_encode($usuarios);
     }
 
-    return json_encode($usuarios);
 }
 
 // Função para atualizar status do usuário
