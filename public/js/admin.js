@@ -1,6 +1,16 @@
 async function buscarUsuariosPendentes() {
     try {
-        const response = await fetch('public/config/crud.php'); // Substitua pela URL do seu endpoint
+        const response = await fetch('public/config/crud.php', {
+            method: "POST", // Se você estiver buscando dados, use GET. Se estiver enviando, mantenha POST.
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                // Passe os dados necessários, se houver
+                status: 'pendente' // Por exemplo, se você quer filtrar por status
+            }) 
+        });
+
         const data = await response.json();
 
         if (data.success) {
