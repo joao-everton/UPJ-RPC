@@ -45,3 +45,5 @@ async function buscarUsuariosPendentes() {
 
 // Chama a função ao carregar a página
 window.onload = buscarUsuariosPendentes;
+
+

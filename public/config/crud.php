@@ -54,7 +54,7 @@ function buscarUsuariosPendentes($conn) {
 }
 
 // Função para atualizar status do usuário
-function atualizarStatusUsuario($id, $status, $conn) {
+function atualizarStatus($id, $status, $conn) {
     if (!in_array($status, ['ativo', 'inativo'])) {
         return json_encode(["success" => false, "error" => "Status inválido"]);
     }
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
 
             case 'atualizarStatus':
-                echo atualizarStatusUsuario($request['id_usuario'], $request['status'], $conn);
+                echo atualizarStatus($request['id_usuario'], $request['status'], $conn);
                 break;
 
             default:
