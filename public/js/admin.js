@@ -4,8 +4,17 @@ function buscarUsuariosPendentes() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'buscarPendentes' })
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Erro HTTP: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
+        if (!data.success) {
+            throw new Error(data.error || "Erro desconhecido.");
+        }
+
         const tableBody = document.querySelector('#lista_pendentes');
         tableBody.innerHTML = '';
 
@@ -25,24 +34,4 @@ function buscarUsuariosPendentes() {
         });
     })
     .catch(error => console.error('Erro ao buscar usuários pendentes:', error));
-        
 }
-
-function atualizarStatus(id, status) {
-    fetch('public/config/crud.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'atualizarStatus', id: id, status: status })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            alert(`Usuário ${status === 'ativo' ? 'aprovado' : 'rejeitado'} com sucesso!`);
-            buscarUsuariosPendentes();
-        } else {
-            alert('Erro ao atualizar status do usuário.');
-        }
-    });
-}
-
-window.onload = buscarUsuariosPendentes;

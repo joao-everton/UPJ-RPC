@@ -1,6 +1,10 @@
 <?php
 include "config.php";
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+header('Content-Type: application/json'); // Força a saída JSON
+
 // Função de cadastro
 function cadastro($nome, $email, $telefone, $senha, $conn) {
     try {
@@ -37,7 +41,7 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
 
 // Função para buscar usuários pendentes
 function buscarUsuariosPendentes($conn) {
-    $sql = "SELECT id, nome, email, telefone FROM usuarios WHERE status = 'pendente'";
+    $sql = "SELECT id, nome, email, telefone, status FROM usuarios WHERE status = 'pendente'";
     $result = $conn->query($sql);
     $usuarios = [];
 
