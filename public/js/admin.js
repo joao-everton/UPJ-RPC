@@ -4,6 +4,7 @@ function buscarUsuariosPendentes() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'buscarPendentes' })
     })
+    console.log('fetch enviado')
     .then(response => {
         if (!response.ok) {
             throw new Error(`Erro HTTP: ${response.status}`);
@@ -17,7 +18,7 @@ function buscarUsuariosPendentes() {
 
         const tableBody = document.querySelector('#lista_pendentes');
         tableBody.innerHTML = '';
-
+        
         data.dados.forEach(usuario => {
             const row = document.createElement('tr');
             row.innerHTML = `
