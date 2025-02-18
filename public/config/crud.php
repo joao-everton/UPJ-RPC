@@ -36,22 +36,20 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
     }
 }
 
-// Função para buscar usuários pendentes
 function buscarUsuariosPendentes($conn) {
     try {
         $stmt = $conn->prepare("SELECT id, nome, email, telefone, status FROM usuarios WHERE status = 'pendente'");
         $stmt->execute();
         $result = $stmt->get_result();
-        
-    
+
         $usuarios = [];
         while ($row = $result->fetch_assoc()) {
             $usuarios[] = $row;
         }
-        
+
         return json_encode(["success" => true, "dados" => $usuarios]);
     } catch (Throwable $e) {
-        return json_encode(["success" => false, "dados" => $e->getMessage()]);
+        return json_encode(["success" => false, "error" => $e->getMessage()]);
     }
 }
 

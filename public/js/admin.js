@@ -1,34 +1,47 @@
 async function buscarUsuariosPendentes() {
+    console.log("🔄 Buscando usuários pendentes...");
+
     try {
-        const response = await fetch('public/config/crud.php', {
-            method: "POST", // Se você estiver buscando dados, use GET. Se estiver enviando, mantenha POST.
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                // Passe os dados necessários, se houver
-                status: 'pendente' // Por exemplo, se você quer filtrar por status
-            }) 
+        const response = await fetch('/public/config/crud.php', { 
+            method: "POST",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'buscarPendentes' }) 
         });
 
         const data = await response.json();
+        console.log("📡 Resposta da API:", data); // Depuração no console
 
-        if (data.success) {
-            const tbody = document.getElementById('usuariosTable').getElementsByTagName('tbody')[0];
-            data.dados.forEach(usuario => {
-                const row = tbody.insertRow();
-                row.insertCell(0).textContent = usuario.nome;
-                row.insertCell(1).textContent = usuario.email;
-                row.insertCell(2).textContent = usuario.telefone;
-                row.insertCell(3).textContent = usuario.status;
-            });
-        } else {
-            console.error('Erro ao buscar dados:', data.dados);
+        if (!data.success) {
+            throw new Error(data.error || "Erro desconhecido.");
         }
+
+        const tbody = document.getElementById('lista_pendentes');
+        tbody.innerHTML = ''; // Limpa a tabela antes de inserir novos dados
+
+        data.dados.forEach(usuario => {
+            const row = document.createElement('tr');
+
+            row.innerHTML = `
+                <td class="px-4 py-2">${usuario.nome}</td>
+                <td class="px-4 py-2">${usuario.email}</td>
+                <td class="px-4 py-2">${usuario.telefone}</td>
+                <td class="px-4 py-2">
+                    <button class="bg-green-500 text-white px-2 py-1 rounded" 
+                        onclick="atualizarStatus(${usuario.id}, 'ativo')">
+                        Aprovar
+                    </button>
+                    <button class="bg-red-500 text-white px-2 py-1 rounded" 
+                        onclick="atualizarStatus(${usuario.id}, 'inativo')">
+                        Rejeitar
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(row);
+        });
     } catch (error) {
-        console.error('Erro ao fazer a requisição:', error);
+        console.error('❌ Erro ao buscar usuários pendentes:', error);
     }
 }
 
-// Chama a função para buscar usuários quando a página carrega
+// Chama a função ao carregar a página
 window.onload = buscarUsuariosPendentes;
