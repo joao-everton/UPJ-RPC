@@ -2,7 +2,7 @@ async function buscarUsuariosPendentes() {
     console.log("🔄 Buscando usuários pendentes...");
 
     try {
-        const response = await fetch('/public/config/crud.php', { 
+        const response = await fetch('public/config/crud.php', { 
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ action: 'buscarPendentes' }) 
