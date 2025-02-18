@@ -40,7 +40,7 @@ function aprovarUsuario(id) {
 }
 
 function rejeitarUsuario(id) {
-    fetch('crud.php', {
+    fetch('public/config/crud.php', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'rejeitar', id: id })

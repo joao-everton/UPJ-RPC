@@ -46,7 +46,7 @@ function buscarUsuariosPendentes($conn) {
             $usuarios[] = $row;
         }
     }
-    return json_encode("usuarios" => "usuarios pendentes");
+    
 }
 
 // Função para atualizar o status do usuário
