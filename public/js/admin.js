@@ -15,6 +15,7 @@ function buscarUsuariosPendentes() {
                 <td>${usuario.nome}</td>
                 <td>${usuario.email}</td>
                 <td>${usuario.telefone}</td>
+                <td>${usuario.status}</td>
                 <td>
                     <button class="bg-green-500 text-white px-2 py-1 rounded" onclick="atualizarStatus(${usuario.id}, 'ativo')">Aprovar</button>
                     <button class="bg-red-500 text-white px-2 py-1 rounded" onclick="atualizarStatus(${usuario.id}, 'inativo')">Rejeitar</button>
@@ -23,7 +24,9 @@ function buscarUsuariosPendentes() {
             tableBody.appendChild(row);
         });
     })
-    .catch(error => console.error('Erro ao buscar usuários pendentes:', error));
+    .catch(error => {
+        console.error('Erro ao buscar usuários pendentes:', error)});
+        
 }
 
 function atualizarStatus(id, status) {
