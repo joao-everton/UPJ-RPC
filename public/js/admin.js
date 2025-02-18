@@ -9,7 +9,7 @@ function buscarUsuariosPendentes() {
         const tableBody = document.querySelector('#lista_pendentes');
         tableBody.innerHTML = '';
 
-        data.forEach(usuario => {
+        data.dados.forEach(usuario => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${usuario.nome}</td>
@@ -24,8 +24,7 @@ function buscarUsuariosPendentes() {
             tableBody.appendChild(row);
         });
     })
-    .catch(error => {
-        console.error('Erro ao buscar usuários pendentes:', error)});
+    .catch(error => console.error('Erro ao buscar usuários pendentes:', error));
         
 }
 
