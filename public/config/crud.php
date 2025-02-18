@@ -89,6 +89,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             case 'atualizarStatus':
                 echo atualizarStatus($request['id_usuario'], $request['status'], $conn);
                 break;
+            
+            case 
 
             default:
                 echo json_encode(["success" => false, "error" => "Ação inválida"]);

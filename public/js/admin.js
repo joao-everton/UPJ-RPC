@@ -26,18 +26,18 @@ async function buscarUsuariosPendentes() {
                 <td class="px-4 py-2">${usuario.email}</td>
                 <td class="px-4 py-2">${usuario.telefone}</td>
                 <td class="px-4 py-2">
-                    <button class="bg-green-500 text-white px-2 py-1 rounded" 
+                    <button id="aprovar" class="bg-green-500 text-white px-2 py-1 rounded" 
                         onclick="atualizarStatus(${usuario.id}, 'ativo')">
                         Aprovar
                     </button>
-                    <button class="bg-red-500 text-white px-2 py-1 rounded" 
+                    <button id="reprovar" class="bg-red-500 text-white px-2 py-1 rounded" 
                         onclick="atualizarStatus(${usuario.id}, 'inativo')">
                         Rejeitar
                     </button>
                 </td>
             `;
             tbody.appendChild(row);
-        
+            
         });
     } catch (error) {
         console.error('❌ Erro ao buscar usuários pendentes:', error);
@@ -47,4 +47,13 @@ async function buscarUsuariosPendentes() {
 // Chama a função ao carregar a página
 window.onload = buscarUsuariosPendentes;
 
+function atualizarStatus() {
+    const buttons = document.getElementsByTagName("button");
+    const aprovar = document.getElementById('aprovar');
+    const reprovar = document.getElementById('reprovar');
 
+    buttons.onclick() {
+        if
+    }
+
+}
