@@ -37,13 +37,7 @@ async function buscarUsuariosPendentes() {
                 </td>
             `;
             tbody.appendChild(row);
-            row.querySelector(".atualizarStatus").addEventListener("click", function () {
-                fetch("public/config/crud.php", {
-                    method: "POST",
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ action: 'atualizarStatus' })
-                })
-            })
+        
         });
     } catch (error) {
         console.error('❌ Erro ao buscar usuários pendentes:', error);
