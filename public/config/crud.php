@@ -38,7 +38,7 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
 
 function buscarUsuariosPendentes($conn) {
     try {
-        $stmt = $conn->prepare("SELECT id, nome, email, telefone, status FROM usuarios WHERE status = 'pendente'");
+        $stmt = $conn->prepare("SELECT nome, email, telefone, status FROM usuarios WHERE status = 'pendente'");
         $stmt->execute();
         $result = $stmt->get_result();
 
