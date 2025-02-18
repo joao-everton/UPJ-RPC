@@ -1,9 +1,6 @@
 <?php
 include "config.php";
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-header('Content-Type: application/json'); // Força a saída JSON
 
 // Função de cadastro
 function cadastro($nome, $email, $telefone, $senha, $conn) {
