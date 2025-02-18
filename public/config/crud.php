@@ -41,19 +41,22 @@ function buscarUsuariosPendentes($conn) {
     $result = $conn->query($sql);
     $usuarios = [];
 
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $usuarios[] = $row;
-        }
+    while ($row = $result->fetch_assoc()) {
+        $usuarios[] = $row;
     }
-    
+
+    return json_encode($usuarios);
 }
 
-// Função para atualizar o status do usuário
+// Função para atualizar status do usuário
 function atualizarStatusUsuario($id, $status, $conn) {
+    if (!in_array($status, ['ativo', 'inativo'])) {
+        return json_encode(["success" => false, "error" => "Status inválido"]);
+    }
+
     $stmt = $conn->prepare("UPDATE usuarios SET status = ? WHERE id = ?");
     $stmt->bind_param("si", $status, $id);
-
+    
     if ($stmt->execute()) {
         return json_encode(["success" => true]);
     } else {

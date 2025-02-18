@@ -1,5 +1,9 @@
 function buscarUsuariosPendentes() {
-    fetch('public/config/crud.php')
+    fetch('public/config/crud.php',{ 
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({action: 'buscarPendentes'})
+    })    
         .then(response => response.json())
         .then(data => {
             const tableBody = document.querySelector('#usuariosTable tbody');
