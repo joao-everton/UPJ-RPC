@@ -38,16 +38,21 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
 
 // Função para buscar usuários pendentes
 function buscarUsuariosPendentes($conn) {
-    $sql = "SELECT id, nome, email, telefone, status FROM usuarios WHERE status = 'pendente'";
-    $result = $conn->query($sql);
-    $usuarios = [];
-
-    while ($row = $result->fetch_assoc()) {
-        $usuarios[] = $row;
+    try {
+        $stmt = $conn->prepare("SELECT id, nome, email, telefone, status FROM usuarios WHERE status = 'pendente'");
+        $stmt->execute();
+        $result = $stmt->get_result();
         
+    
+        $usuarios = [];
+        while ($row = $result->fetch_assoc()) {
+            $usuarios[] = $row;
+        }
+        
+        return json_encode(["success" => true, "dados" => $usuarios]);
+    } catch (Throwable $e) {
+        return json_encode(["success" => false, "dados" => $e->getMessage()]);
     }
-
-    return json_encode(["success" => true, "dados" => $usuarios]);
 }
 
 // Função para atualizar status do usuário
@@ -58,7 +63,7 @@ function atualizarStatusUsuario($id, $status, $conn) {
 
     $stmt = $conn->prepare("UPDATE usuarios SET status = ? WHERE id = ?");
     $stmt->bind_param("si", $status, $id);
-    
+
     if ($stmt->execute()) {
         return json_encode(["success" => true]);
     } else {
