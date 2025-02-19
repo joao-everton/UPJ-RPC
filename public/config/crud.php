@@ -58,7 +58,7 @@ function atualizarStatus($id_usuario, $status, $conn) {
         return json_encode(["success" => false, "error" => "Status inválido"]);
     }
 
-    $stmt = $conn->prepare("UPDATE usuarios SET status = $status WHERE id_usuario = ?");
+    $stmt = $conn->prepare("UPDATE usuarios SET status = ? WHERE id_usuario = ?");
     $stmt->bind_param("si", $status, $id_usuario);
 
     if ($stmt->execute()) {
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
 
             case 'atualizarStatus':
-                echo atualizarStatus($request['id_usuario'], $request['action'] === 'aprovar' ? 'ativo' : 'inativo', $conn);
+                echo atualizarStatus($request['id_usuario'], $request['action'], $conn);
                 break;
 
             default:
