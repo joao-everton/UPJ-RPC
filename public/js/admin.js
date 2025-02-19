@@ -9,7 +9,7 @@ async function buscarUsuariosPendentes() {
         });
 
         const data = await response.json();
-        console.log("📡 Resposta da API:", data); // Depuração no console
+        console.log("📡 Resposta da API:", data); // Debug no console
 
         if (!data.success) {
             throw new Error(data.error || "Erro desconhecido.");
@@ -26,18 +26,17 @@ async function buscarUsuariosPendentes() {
                 <td class="px-4 py-2">${usuario.email}</td>
                 <td class="px-4 py-2">${usuario.telefone}</td>
                 <td class="px-4 py-2">
-                    <button id="aprovar" class="bg-green-500 text-white px-2 py-1 rounded" 
-                        onclick="atualizarStatus(${usuario.id}, 'ativo')">
+                    <button class="bg-green-500 text-white px-2 py-1 rounded" 
+                        onclick="atualizarStatus(${usuario.id_usuario}, 'ativo')">
                         Aprovar
                     </button>
-                    <button id="reprovar" class="bg-red-500 text-white px-2 py-1 rounded" 
-                        onclick="atualizarStatus(${usuario.id}, 'inativo')">
+                    <button class="bg-red-500 text-white px-2 py-1 rounded" 
+                        onclick="atualizarStatus(${usuario.id_usuario}, 'inativo')">
                         Rejeitar
                     </button>
                 </td>
             `;
             tbody.appendChild(row);
-            
         });
     } catch (error) {
         console.error('❌ Erro ao buscar usuários pendentes:', error);
@@ -46,3 +45,30 @@ async function buscarUsuariosPendentes() {
 
 // Chama a função ao carregar a página
 window.onload = buscarUsuariosPendentes;
+
+async function atualizarStatus(id_usuario, status) {
+    try {
+        const response = await fetch('public/config/crud.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                action: 'atualizarStatus',
+                id_usuario: id_usuario,
+                status: status
+            })
+        });
+
+        const data = await response.json();
+        console.log("🔄 Atualizando status do usuário:", data);
+
+        if (data.success) {
+            alert(`Usuário atualizado para ${status}!`);
+            buscarUsuariosPendentes(); // Atualiza a tabela após a alteração
+        } else {
+            alert("Erro ao atualizar status.");
+        }
+    } catch (error) {
+        console.error('❌ Erro ao atualizar status:', error);
+        alert('Erro na requisição. Verifique o console.');
+    }
+}
