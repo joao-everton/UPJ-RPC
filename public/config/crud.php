@@ -1,7 +1,6 @@
 <?php
 include "config.php";
 
-
 // Função de cadastro
 function cadastro($nome, $email, $telefone, $senha, $conn) {
     try {
@@ -13,29 +12,29 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
         $stmt->execute();
         $stmt->store_result(); // Necessário para usar num_rows
 
-       if ($stmt->num_rows > 0) {
-           $stmt->close(); // Fecha antes de continuar
-           return json_encode(["success" => false, "error" => "E-mail já cadastrado"]);
-       }
-       $stmt->close();
+        if ($stmt->num_rows > 0) {
+            $stmt->close();
+            return json_encode(["success" => false, "error" => "E-mail já cadastrado"]);
+        }
+        $stmt->close();
 
-       // Converter telefone para inteiro (se for INT no banco)
-       $telefoneInt = (int) preg_replace('/\D/', '', $telefone); // Remove caracteres não numéricos
+        // Converter telefone para inteiro (se for INT no banco)
+        $telefoneInt = (int) preg_replace('/\D/', '', $telefone); // Remove caracteres não numéricos
 
-       // Inserir novo usuário
-       $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, telefone, senha) VALUES (?, ?, ?, ?)");
-       $stmt->bind_param("ssis", $nome, $email, $telefoneInt, $senhaHash);
-       $stmt->execute();
-       $stmt->close();
+        // Inserir novo usuário com status "pendente"
+        $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, telefone, senha, status) VALUES (?, ?, ?, ?, 'pendente')");
+        $stmt->bind_param("ssis", $nome, $email, $telefoneInt, $senhaHash);
+        $stmt->execute();
+        $stmt->close();
 
-       return json_encode(["success" => true]);
-       
-        
+        return json_encode(["success" => true]);
+
     } catch (Throwable $e) {
         return json_encode(["success" => false, "error" => $e->getMessage()]);
     }
 }
 
+// Função para buscar usuários pendentes
 function buscarUsuariosPendentes($conn) {
     try {
         $stmt = $conn->prepare("SELECT id_usuario, nome, email, telefone, status FROM usuarios WHERE status = 'pendente'");
@@ -53,17 +52,17 @@ function buscarUsuariosPendentes($conn) {
     }
 }
 
-// Função para atualizar status do usuário
-function atualizarStatus($id, $status, $conn) {
+// Função para aprovar ou reprovar usuário
+function atualizarStatus($id_usuario, $status, $conn) {
     if (!in_array($status, ['ativo', 'inativo'])) {
         return json_encode(["success" => false, "error" => "Status inválido"]);
     }
 
-    $stmt = $conn->prepare("UPDATE usuarios SET status = ? WHERE id = ?");
-    $stmt->bind_param("si", $status, $id);
+    $stmt = $conn->prepare("UPDATE usuarios SET status = ? WHERE id_usuario = ?");
+    $stmt->bind_param("si", $status, $id_usuario);
 
     if ($stmt->execute()) {
-        return json_encode(["success" => true]);
+        return json_encode(["success" => true, "message" => "Status atualizado para $status"]);
     } else {
         return json_encode(["success" => false, "error" => "Erro ao atualizar status"]);
     }
@@ -86,11 +85,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo buscarUsuariosPendentes($conn);
                 break;
 
-            case 'atualizarStatus':
-                echo atualizarStatus($request['id_usuario'], $request['status'], $conn);
+            case 'aprovar':
+            case 'reprovar':
+                echo atualizarStatus($request['id_usuario'], $request['action'] === 'aprovar' ? 'ativo' : 'inativo', $conn);
                 break;
-            
-            case 
 
             default:
                 echo json_encode(["success" => false, "error" => "Ação inválida"]);
