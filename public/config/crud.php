@@ -1,5 +1,5 @@
 <?php
-include "config.php";
+include "public/config/config.php";
 
 // Função de cadastro
 function cadastro($nome, $email, $telefone, $senha, $conn) {
