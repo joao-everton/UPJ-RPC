@@ -56,7 +56,7 @@ async function atualizarStatus(id, status) {
                 id: id,
                 status: status
             })
-        });
+        })
 
         const data = await response.json();
         console.log("🔄 Atualizando status do usuário:", data);
