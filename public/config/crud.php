@@ -1,5 +1,5 @@
 <?php
-include "public/config/config.php";
+include "config.php";
 
 
 // Função de cadastro
@@ -90,7 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo atualizarStatus($request['id_usuario'], $request['status'], $conn);
                 break;
             
-
             default:
                 echo json_encode(["success" => false, "error" => "Ação inválida"]);
         }
