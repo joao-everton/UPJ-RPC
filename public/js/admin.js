@@ -27,11 +27,11 @@ async function buscarUsuariosPendentes() {
                 <td class="px-4 py-2">${usuario.telefone}</td>
                 <td class="px-4 py-2">
                     <button class="bg-green-500 text-white px-2 py-1 rounded" 
-                        onclick="atualizarStatus('ativo')">
+                        onclick="atualizarStatus(${usuario.status}, 'ativo')">
                         Aprovar
                     </button>
                     <button class="bg-red-500 text-white px-2 py-1 rounded" 
-                        onclick="atualizarStatus('inativo')">
+                        onclick="atualizarStatus(${usuario.status}, 'inativo')">
                         Rejeitar
                     </button>
                 </td>
