@@ -85,8 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo buscarUsuariosPendentes($conn);
                 break;
 
-            case 'aprovar':
-            case 'reprovar':
+            case 'atualizarStatus':
                 echo atualizarStatus($request['id_usuario'], $request['action'] === 'aprovar' ? 'ativo' : 'inativo', $conn);
                 break;
 
