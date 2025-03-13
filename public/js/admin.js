@@ -26,8 +26,8 @@ async function buscarUsuariosPendentes() {
                 <td class="px-4 py-2">${usuario.email}</td>
                 <td class="px-4 py-2">${usuario.telefone}</td>
                 <td>
-                    <button onclick="atualizarStatus(${usuario.status}, 'ativo')">Aprovar</button>
-                    <button onclick="atualizarStatus(${usuario.status}, 'inativo')">Rejeitar</button>
+                    <button onclick="atualizarStatus(${usuario.id_usuario}, 'ativo')">Aprovar</button>
+                    <button onclick="atualizarStatus(${usuario.id_usuario}, 'inativo')">Rejeitar</button>
                 </td>
             `;
             tbody.appendChild(row);

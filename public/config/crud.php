@@ -58,6 +58,7 @@ function atualizarStatus($id_usuario, $status, $conn) {
         return json_encode(["success" => false, "error" => "Status inválido"]);
     }
 
+    // Preparar e executar a query com o status correto
     $stmt = $conn->prepare("UPDATE usuarios SET status = ? WHERE id_usuario = ?");
     $stmt->bind_param("si", $status, $id_usuario);
 
@@ -67,6 +68,7 @@ function atualizarStatus($id_usuario, $status, $conn) {
         return json_encode(["success" => false, "error" => "Erro ao atualizar status"]);
     }
 }
+
 
 // Capturar JSON apenas uma vez
 $request = json_decode(file_get_contents('php://input'), true);
