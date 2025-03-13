@@ -26,12 +26,10 @@ async function buscarUsuariosPendentes() {
                 <td class="px-4 py-2">${usuario.email}</td>
                 <td class="px-4 py-2">${usuario.telefone}</td>
                 <td class="px-4 py-2">
-                    <button class="bg-green-500 text-white px-2 py-1 rounded" 
-                        onclick="atualizarStatus(${usuario.id_usuario}, 'ativo')">
+                    <button id="aprovarbtn" class="bg-green-500 text-white px-2 py-1 rounded">
                         Aprovar
                     </button>
-                    <button class="bg-red-500 text-white px-2 py-1 rounded" 
-                        onclick="atualizarStatus(${usuario.id_usuario}, 'inativo')">
+                    <button id="reprovarbtn" class="bg-red-500 text-white px-2 py-1 rounded">
                         Rejeitar
                     </button>
                 </td>
@@ -47,6 +45,7 @@ async function buscarUsuariosPendentes() {
 window.onload = buscarUsuariosPendentes;
 
 async function atualizarStatus(id_usuario, status) {
+    console.log("📌 Enviando para atualização:", id_usuario, status);
     try {
         const response = await fetch('public/config/crud.php', {
             method: 'POST',
