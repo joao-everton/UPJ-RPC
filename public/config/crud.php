@@ -52,13 +52,12 @@ function buscarUsuariosPendentes($conn) {
     }
 }
 
-// Função para aprovar ou reprovar usuário
+// Função para atualizar status do usuário
 function atualizarStatus($id_usuario, $status, $conn) {
     if (!in_array($status, ['ativo', 'inativo'])) {
         return json_encode(["success" => false, "error" => "Status inválido"]);
     }
 
-    // Preparar e executar a query com o status correto
     $stmt = $conn->prepare("UPDATE usuarios SET status = ? WHERE id_usuario = ?");
     $stmt->bind_param("si", $status, $id_usuario);
 

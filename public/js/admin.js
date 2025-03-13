@@ -1,47 +1,54 @@
 async function buscarUsuariosPendentes() {
-    console.log("🔄 Buscando usuários pendentes...");
-
     try {
-        const response = await fetch('public/config/crud.php', { 
-            method: "POST",
+        const response = await fetch('public/config/crud.php', {
+            method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'buscarPendentes' }) 
+            body: JSON.stringify({ action: 'buscarPendentes' })
         });
 
         const data = await response.json();
-        console.log("📡 Resposta da API:", data); // Debug no console
 
-        if (!data.success) {
-            throw new Error(data.error || "Erro desconhecido.");
+        if (data.success) {
+            const tbody = document.getElementById('lista_pendentes');
+            tbody.innerHTML = '';
+
+            data.dados.forEach(usuario => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${usuario.nome}</td>
+                    <td>${usuario.email}</td>
+                    <td>${usuario.telefone}</td>
+                    <td>
+                        <button id="aprovar-${usuario.id_usuario}" class="bg-green-500 text-white px-2 py-1 rounded">Aprovar</button>
+                        <button id="rejeitar-${usuario.id_usuario}" class="bg-red-500 text-white px-2 py-1 rounded">Rejeitar</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+
+                // Adiciona eventos para os botões
+                document.getElementById(`aprovar-${usuario.id_usuario}`).addEventListener('click', () => aprovarUsuario(usuario.id_usuario));
+                document.getElementById(`rejeitar-${usuario.id_usuario}`).addEventListener('click', () => rejeitarUsuario(usuario.id_usuario));
+            });
+        } else {
+            console.error('Erro ao buscar usuários pendentes:', data.error);
         }
-
-        const tbody = document.getElementById('lista_pendentes');
-        tbody.innerHTML = ''; // Limpa a tabela antes de inserir novos dados
-
-        data.dados.forEach(usuario => {
-            const row = document.createElement('tr');
-
-            row.innerHTML = `
-                <td class="px-4 py-2">${usuario.nome}</td>
-                <td class="px-4 py-2">${usuario.email}</td>
-                <td class="px-4 py-2">${usuario.telefone}</td>
-                <td>
-                    <button onclick="atualizarStatus(${usuario.id_usuario}, 'ativo')">Aprovar</button>
-                    <button onclick="atualizarStatus(${usuario.id_usuario}, 'inativo')">Rejeitar</button>
-                </td>
-            `;
-            tbody.appendChild(row);
-        });
     } catch (error) {
-        console.error('❌ Erro ao buscar usuários pendentes:', error);
+        console.error('Erro na requisição:', error);
     }
 }
 
-// Chama a função ao carregar a página
-window.onload = buscarUsuariosPendentes;
+// Função para aprovar usuário
+async function aprovarUsuario(id_usuario) {
+    await atualizarStatus(id_usuario, 'ativo');
+}
 
+// Função para rejeitar usuário
+async function rejeitarUsuario(id_usuario) {
+    await atualizarStatus(id_usuario, 'inativo');
+}
+
+// Função genérica para atualizar status
 async function atualizarStatus(id_usuario, status) {
-    console.log("📌 Enviando para atualização:", id_usuario, status);
     try {
         const response = await fetch('public/config/crud.php', {
             method: 'POST',
@@ -54,16 +61,18 @@ async function atualizarStatus(id_usuario, status) {
         });
 
         const data = await response.json();
-        console.log("🔄 Atualizando status do usuário:", data);
 
         if (data.success) {
             alert(`Usuário atualizado para ${status}!`);
             buscarUsuariosPendentes(); // Atualiza a tabela após a alteração
         } else {
-            alert("Erro ao atualizar status.");
+            alert(`Erro ao atualizar usuário: ${data.error}`);
         }
     } catch (error) {
-        console.error('❌ Erro ao atualizar status:', error);
+        console.error('Erro na requisição:', error);
         alert('Erro na requisição. Verifique o console.');
     }
 }
+
+// Chama a função para buscar usuários ao carregar a página
+window.onload = buscarUsuariosPendentes;
