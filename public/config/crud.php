@@ -86,8 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo buscarUsuariosPendentes($conn);
                 break;
 
-            case 'atualizarStatus':
-                echo atualizarStatus($request['id_usuario'], $request['status'] === 'atualizarStatus', $conn);
+                case 'atualizarStatus':
+                    echo atualizarStatus($request['id_usuario'], $request['status'], $conn);                
                 break;
 
             default:
