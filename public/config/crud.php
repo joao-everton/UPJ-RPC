@@ -19,7 +19,7 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
         $stmt->close();
 
         // Converter telefone para inteiro (se for INT no banco)
-        $telefoneInt = (int) preg_replace('/\D/', '', $telefone); // Remove caracteres não numéricos
+        $telefoneInt = (int) preg_replace('\D/', '', $telefone); // Remove caracteres não numéricos
 
         // Inserir novo usuário com status "pendente"
         $stmt = $conn->prepare("INSERT INTO usuarios (nome, email, telefone, senha, status) VALUES (?, ?, ?, ?, 'pendente')");
@@ -33,6 +33,38 @@ function cadastro($nome, $email, $telefone, $senha, $conn) {
         return json_encode(["success" => false, "error" => $e->getMessage()]);
     }
 }
+
+
+//função de login
+function login($email, $senha, $conn) {
+    try {
+        $stmt = $conn->prepare("SELECT id_usuario, senha, status FROM usuarios WHERE email = ? AND status IN ('ativo', 'inativo')");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            
+            // Verifica a senha criptografada
+            if (password_verify($senha, $row['senha'])) {
+                if ($row['status'] === 'ativo') {
+                    return json_encode(["success" => true, "id_usuario" => $row['id_usuario']]);
+                } else {
+                    return json_encode(["success" => false, "message" => "Usuário inativo. Aguarde aprovação."]);
+                }
+            } else {
+                return json_encode(["success" => false, "message" => "Senha incorreta."]);
+            }
+        } else {
+            return json_encode(["success" => false, "message" => "Usuário não encontrado."]);
+        }
+    } 
+    catch (Throwable $e) {
+        return json_encode(["success" => false, "error" => $e->getMessage()]);
+    }
+}
+
 
 // Função para buscar usuários pendentes
 function buscarUsuariosPendentes($conn) {
