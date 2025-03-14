@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 break;
 
             case 'atualizarStatus':
-                echo atualizarStatus($request['id_usuario'], $request['action'] === 'atualizarStatus', $conn);
+                echo atualizarStatus($request['id_usuario'], $request['status'] === 'atualizarStatus', $conn);
                 break;
 
             default:
